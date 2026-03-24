@@ -1,0 +1,10 @@
+# Test ortamı: http://localhost:8080
+# Üretimde carmedlegal.com için bu konteynerin önüne TLS terminasyonu (Traefik, Caddy, nginx vb.) koyun.
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    restart: unless-stopped
