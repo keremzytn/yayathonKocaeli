@@ -15,6 +15,55 @@ function fieldId(name: string) {
   return `field-${name}`
 }
 
+type StepConfig = { title: string; subtitle: string; fieldNames: readonly string[] }
+
+const FORM_STEPS: StepConfig[] = [
+  {
+    title: 'Kişisel bilgiler',
+    subtitle: 'İletişim ve kimlik için temel bilgiler.',
+    fieldNames: ['fullName', 'email', 'phone'],
+  },
+  {
+    title: 'Profil',
+    subtitle: 'Uzmanlık, deneyim ve araç bilgisi.',
+    fieldNames: ['expertise', 'experience', 'skills'],
+  },
+  {
+    title: 'Yanıtlarınız',
+    subtitle: 'Motivasyonunuz ve saha gözleminiz.',
+    fieldNames: ['motivation', 'problem'],
+  },
+  {
+    title: 'Ek ve gönderim',
+    subtitle: 'İsteğe bağlı belge yükleme ve başvuruyu tamamlama.',
+    fieldNames: ['portfolio'],
+  },
+]
+
+function fieldErrorMessage(f: FormField, values: Record<string, string | string[]>): string | null {
+  if (f.type === 'file') return null
+  if (!f.required) {
+    if (f.type === 'textarea') {
+      const s = String(values[f.name] ?? '').trim()
+      const wc = countWords(s)
+      if (wc > f.maxWords) return `En fazla ${f.maxWords} kelime (şu an ${wc}).`
+    }
+    return null
+  }
+  const v = values[f.name]
+  if (f.type === 'checkbox') {
+    if (!Array.isArray(v) || v.length === 0) return 'En az bir seçenek işaretleyin.'
+    return null
+  }
+  const s = typeof v === 'string' ? v.trim() : ''
+  if (!s || (f.type === 'select' && s === '')) return 'Zorunlu alan.'
+  if (f.type === 'textarea') {
+    const wc = countWords(s)
+    if (wc > f.maxWords) return `En fazla ${f.maxWords} kelime (şu an ${wc}).`
+  }
+  return null
+}
+
 export function ApplyPage() {
   usePageTitle('Başvuru')
 
@@ -32,6 +81,10 @@ export function ApplyPage() {
   const [file, setFile] = useState<File | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle')
+  const [step, setStep] = useState(0)
+
+  const totalSteps = FORM_STEPS.length
+  const isLastStep = step === totalSteps - 1
 
   function setField(name: string, v: string | string[]) {
     setValues((prev) => ({ ...prev, [name]: v }))
@@ -42,30 +95,58 @@ export function ApplyPage() {
     })
   }
 
-  function validate(): boolean {
-    const e: Record<string, string> = {}
-    for (const f of applicationFormFields) {
-      if (f.type === 'file') continue
-      if (!f.required) continue
-      const v = values[f.name]
-      if (f.type === 'checkbox') {
-        if (!Array.isArray(v) || v.length === 0) e[f.name] = 'En az bir seçenek işaretleyin.'
-        continue
-      }
-      const s = typeof v === 'string' ? v.trim() : ''
-      if (!s || (f.type === 'select' && s === '')) e[f.name] = 'Zorunlu alan.'
-      if (f.type === 'textarea') {
-        const wc = countWords(s)
-        if (wc > f.maxWords) e[f.name] = `En fazla ${f.maxWords} kelime (şu an ${wc}).`
-      }
+  function getFieldsForStep(stepIndex: number): FormField[] {
+    const names = new Set(FORM_STEPS[stepIndex]?.fieldNames ?? [])
+    return applicationFormFields.filter((f) => names.has(f.name))
+  }
+
+  function mergeStepErrors(stepIndex: number, stepErrors: Record<string, string>) {
+    const fields = getFieldsForStep(stepIndex)
+    setErrors((prev) => {
+      const next = { ...prev }
+      for (const f of fields) delete next[f.name]
+      return { ...next, ...stepErrors }
+    })
+  }
+
+  function validateStep(stepIndex: number): boolean {
+    const fields = getFieldsForStep(stepIndex)
+    const stepErrors: Record<string, string> = {}
+    for (const f of fields) {
+      const msg = fieldErrorMessage(f, values)
+      if (msg) stepErrors[f.name] = msg
     }
-    setErrors(e)
-    return Object.keys(e).length === 0
+    mergeStepErrors(stepIndex, stepErrors)
+    return Object.keys(stepErrors).length === 0
+  }
+
+  function goNext() {
+    if (!validateStep(step)) return
+    setStep((s) => Math.min(s + 1, totalSteps - 1))
+  }
+
+  function goBack() {
+    setStep((s) => Math.max(s - 1, 0))
   }
 
   async function onSubmit(ev: FormEvent) {
     ev.preventDefault()
-    if (!validate()) return
+    if (!isLastStep) return
+    const e: Record<string, string> = {}
+    for (const f of applicationFormFields) {
+      if (f.type === 'file') continue
+      const msg = fieldErrorMessage(f, values)
+      if (msg) e[f.name] = msg
+    }
+    setErrors(e)
+    if (Object.keys(e).length > 0) {
+      const first = applicationFormFields.find((f) => e[f.name])
+      if (first) {
+        const stepIdx = FORM_STEPS.findIndex((s) => s.fieldNames.includes(first.name))
+        if (stepIdx >= 0) setStep(stepIdx)
+      }
+      return
+    }
     setStatus('sending')
     try {
       const payload: Record<string, string | string[] | File | null> = { ...values, portfolio: file }
@@ -100,7 +181,7 @@ export function ApplyPage() {
               common,
             )}
           />
-          {err ? <p className="mt-1 text-xs text-red-400">{err}</p> : null}
+          {err ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{err}</p> : null}
         </div>
       )
     }
@@ -128,7 +209,7 @@ export function ApplyPage() {
               </option>
             ))}
           </select>
-          {err ? <p className="mt-1 text-xs text-red-400">{err}</p> : null}
+          {err ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{err}</p> : null}
         </div>
       )
     }
@@ -156,7 +237,7 @@ export function ApplyPage() {
               </label>
             ))}
           </div>
-          {err ? <p className="text-xs text-red-400">{err}</p> : null}
+          {err ? <p className="text-xs text-red-500 dark:text-red-400">{err}</p> : null}
         </fieldset>
       )
     }
@@ -182,7 +263,7 @@ export function ApplyPage() {
               </label>
             ))}
           </div>
-          {err ? <p className="text-xs text-red-400">{err}</p> : null}
+          {err ? <p className="text-xs text-red-500 dark:text-red-400">{err}</p> : null}
         </fieldset>
       )
     }
@@ -208,10 +289,10 @@ export function ApplyPage() {
               common,
             )}
           />
-          <p className={clsx('mt-1 text-xs', wc > f.maxWords ? 'text-red-400' : 'text-muted')}>
+          <p className={clsx('mt-1 text-xs', wc > f.maxWords ? 'text-red-500 dark:text-red-400' : 'text-muted')}>
             {wc} / {f.maxWords} kelime
           </p>
-          {err ? <p className="text-xs text-red-400">{err}</p> : null}
+          {err ? <p className="text-xs text-red-500 dark:text-red-400">{err}</p> : null}
         </div>
       )
     }
@@ -243,6 +324,9 @@ export function ApplyPage() {
     return null
   }
 
+  const currentConfig = FORM_STEPS[step]
+  const stepFields = getFieldsForStep(step)
+
   return (
     <>
       <PageHero title="Başvuru" subtitle="Bireysel başvuru ile katılın; takım ataması komite tarafından yapılır." />
@@ -253,11 +337,44 @@ export function ApplyPage() {
             <p className="text-center text-green-600 dark:text-green-400">Başvurunuz alındı (simülasyon). Teşekkürler!</p>
           ) : (
             <form onSubmit={onSubmit} className="space-y-8">
-              {applicationFormFields.map(renderField)}
-              {status === 'err' ? <p className="text-sm text-red-400">Gönderim başarısız. Daha sonra tekrar deneyin.</p> : null}
-              <Button type="submit" className="w-full sm:w-auto" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Gönderiliyor…' : 'Başvuruyu gönder (demo)'}
-              </Button>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted">Adım {step + 1} / {totalSteps}</p>
+                <nav aria-label="Başvuru adımları" className="mt-3 flex gap-2">
+                  {FORM_STEPS.map((s, i) => (
+                    <div
+                      key={s.title}
+                      className={clsx(
+                        'h-1 flex-1 rounded-full transition',
+                        i < step ? 'bg-accent-500' : i === step ? 'bg-accent-500/50' : 'bg-border',
+                      )}
+                      title={s.title}
+                    />
+                  ))}
+                </nav>
+                <h2 className="mt-4 font-display text-xl font-semibold text-fg">{currentConfig?.title}</h2>
+                <p className="mt-1 text-sm text-muted">{currentConfig?.subtitle}</p>
+              </div>
+
+              <div className="space-y-8">{stepFields.map(renderField)}</div>
+
+              {status === 'err' ? <p className="text-sm text-red-500 dark:text-red-400">Gönderim başarısız. Daha sonra tekrar deneyin.</p> : null}
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <Button type="button" variant="secondary" className="w-full sm:w-auto" disabled={step === 0} onClick={goBack}>
+                  Geri
+                </Button>
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:justify-end">
+                  {!isLastStep ? (
+                    <Button type="button" className="w-full sm:w-auto" onClick={goNext}>
+                      İleri
+                    </Button>
+                  ) : (
+                    <Button type="submit" className="w-full sm:w-auto" disabled={status === 'sending'}>
+                      {status === 'sending' ? 'Gönderiliyor…' : 'Başvuruyu gönder (demo)'}
+                    </Button>
+                  )}
+                </div>
+              </div>
             </form>
           )}
         </Card>

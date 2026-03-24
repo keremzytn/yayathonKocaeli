@@ -3,6 +3,7 @@ import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Section } from '../components/Section'
 import { Card } from '../components/Card'
+import { CalendarRange, Clock3, MapPin } from 'lucide-react'
 
 export function CalendarPage() {
   usePageTitle('Takvim')
@@ -12,15 +13,42 @@ export function CalendarPage() {
       <PageHero
         title="Takvim"
         subtitle={`Saha keşfi 5 Haziran, maraton ${scheduleMeta.hackathonDate} tarihinde ${scheduleMeta.venue} adresinde.`}
-      />
+      >
+        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <CalendarRange className="h-4 w-4" aria-hidden />
+              Gün
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">5-6 Haziran 2026</p>
+          </div>
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <MapPin className="h-4 w-4" aria-hidden />
+              Mekan
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">{scheduleMeta.venue}</p>
+          </div>
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <Clock3 className="h-4 w-4" aria-hidden />
+              Süre
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">12 saat yoğun maraton</p>
+          </div>
+        </div>
+      </PageHero>
       <Section title={scheduleFieldDay.title}>
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
+          <div className="pl-2">
           <p className="text-sm font-medium text-accent-600 dark:text-accent-400">{scheduleFieldDay.location}</p>
           {scheduleFieldDay.paragraphs.map((p) => (
             <p key={p} className="mt-3 leading-relaxed text-fg-muted">
               {p}
             </p>
           ))}
+          </div>
         </Card>
       </Section>
       <Section title={`Hackathon — ${scheduleMeta.hackathonDate}`} className="bg-bg-muted/60 dark:bg-surface-900/30">

@@ -4,23 +4,53 @@ import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Card } from '../components/Card'
 import { Section } from '../components/Section'
+import { BadgeCheck, Gavel, Trophy } from 'lucide-react'
 
 export function AwardsRulesPage() {
   usePageTitle('Ödüller ve kurallar')
 
   return (
     <>
-      <PageHero title="Ödüller ve kurallar" subtitle={evaluationPage.intro} />
+      <PageHero title="Ödüller ve kurallar" subtitle={evaluationPage.intro}>
+        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <Gavel className="h-4 w-4" aria-hidden />
+              Jüri
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">7 kişilik hibrit yapı</p>
+          </div>
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <BadgeCheck className="h-4 w-4" aria-hidden />
+              Değerlendirme
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">Ağırlıklı puanlama sistemi</p>
+          </div>
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <Trophy className="h-4 w-4" aria-hidden />
+              Ödül
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">Kişi başı hediye çeki</p>
+          </div>
+        </div>
+      </PageHero>
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-12 sm:px-6 sm:py-16">
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
+          <div className="pl-2">
           <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.jury.title}</h2>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-fg-muted">
             {evaluationPage.jury.items.map((x) => (
               <li key={x}>{x}</li>
             ))}
           </ul>
+          </div>
         </Card>
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
+          <div className="pl-2">
           <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.weights.title}</h2>
           <ul className="mt-4 space-y-3">
             {evaluationPage.weights.items.map((w) => (
@@ -33,8 +63,11 @@ export function AwardsRulesPage() {
               </li>
             ))}
           </ul>
+          </div>
         </Card>
-        <Card>
+        <Card className="relative overflow-hidden">
+          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
+          <div className="pl-2">
           <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.prizes.title}</h2>
           <div className="mt-6 overflow-x-auto rounded-xl border border-border">
             <table className="w-full text-sm">
@@ -47,6 +80,7 @@ export function AwardsRulesPage() {
                 ))}
               </tbody>
             </table>
+          </div>
           </div>
         </Card>
       </div>

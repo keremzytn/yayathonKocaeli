@@ -3,22 +3,54 @@ import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Section } from '../components/Section'
 import { Model10x10 } from '../components/Model10x10'
+import { Card } from '../components/Card'
+import { GraduationCap, Layers, Users } from 'lucide-react'
 
 export function ParticipationConditionsPage() {
   usePageTitle('Katılım koşulları')
 
   return (
     <>
-      <PageHero title="Katılım koşulları" subtitle={participatePage.lead} />
+      <PageHero title="Katılım koşulları" subtitle={participatePage.lead}>
+        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <Users className="h-4 w-4" aria-hidden />
+              Katılımcı Modeli
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">100 kişi / 10 takım</p>
+          </div>
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <Layers className="h-4 w-4" aria-hidden />
+              Başvuru Tipi
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">Bireysel başvuru</p>
+          </div>
+          <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
+              <GraduationCap className="h-4 w-4" aria-hidden />
+              Profil
+            </p>
+            <p className="mt-2 text-sm font-medium text-fg">Akademik + profesyonel</p>
+          </div>
+        </div>
+      </PageHero>
       <Section title={participatePage.eligibility.title}>
-        <ul className="max-w-3xl list-disc space-y-2 pl-5 text-fg-muted">
-          {participatePage.eligibility.items.map((x) => (
-            <li key={x}>{x}</li>
+        <div className="grid gap-4 md:grid-cols-3">
+          {participatePage.eligibility.items.map((x, idx) => (
+            <Card key={x} className="relative overflow-hidden">
+              <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
+              <p className="pl-2 text-xs font-semibold uppercase tracking-wide text-muted">{`Kriter ${(idx + 1).toString().padStart(2, '0')}`}</p>
+              <p className="mt-2 pl-2 text-sm leading-relaxed text-fg-muted">{x}</p>
+            </Card>
           ))}
-        </ul>
+        </div>
       </Section>
       <Section title={participatePage.teamModel.title} className="bg-bg-muted/60 dark:bg-surface-900/30">
-        <p className="max-w-3xl leading-relaxed text-fg-muted">{participatePage.teamModel.p}</p>
+        <Card>
+          <p className="max-w-3xl leading-relaxed text-fg-muted">{participatePage.teamModel.p}</p>
+        </Card>
       </Section>
       <Section title="10 × 10 modeli — etkileşimli görünüm">
         <Model10x10 />
