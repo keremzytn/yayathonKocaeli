@@ -3,6 +3,7 @@ import { Mail, MessageCircle, Send } from 'lucide-react'
 import { contactPage } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
+import { ContactVenueMap } from '../components/ContactVenueMap'
 import { Card } from '../components/Card'
 import { Button } from '../components/Button'
 import { submitContact } from '../lib/api'
@@ -206,9 +207,7 @@ export function ContactPage() {
           </div>
         </Card>
 
-        <p className="text-center text-xs text-muted">
-          Rehberde önerilen “floating chat” ikonu için ikinci fazda widget eklenebilir.
-        </p>
+        <ContactVenueMap />
       </div>
     </>
   )

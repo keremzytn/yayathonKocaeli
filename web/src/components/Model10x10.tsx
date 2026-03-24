@@ -36,7 +36,7 @@ export function Model10x10() {
                 onClick={() => setSelected(c)}
                 className={
                   active
-                    ? 'aspect-square min-h-[24px] rounded-md bg-accent-500 text-surface-950 sm:min-h-[28px]'
+                    ? 'aspect-square min-h-[24px] rounded-md bg-accent-600 shadow-sm ring-1 ring-inset ring-white/25 sm:min-h-[28px]'
                     : 'aspect-square min-h-[24px] rounded-md bg-bg-elevated text-transparent hover:bg-accent-500/40 dark:bg-surface-800/90 sm:min-h-[28px]'
                 }
                 title={`Takım ${c.team}, ${c.seat}. sıra`}

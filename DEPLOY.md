@@ -1,12 +1,12 @@
 # Yayathon web — deploy rehberi
 
-Uygulama `web/` içinde; üretim çıktısı `web/dist`. **Netlify kullanmıyorsan** aşağıdaki “aaPanel” bölümü senin için; Netlify bölümünü **atlayabilirsin**.
+Uygulama `web/` içinde; üretim çıktısı `web/dist`.
 
 ---
 
 ## aaPanel + CentOS + Docker (ana senaryo)
 
-Özet: Site **Docker** içinde çalışır (port **8083**). aaPanel’deki **nginx**, domain isteklerini bu porta **proxy** ile yollar. Netlify gerekmez.
+Özet: Site **Docker** içinde çalışır (port **8083**). aaPanel’deki **nginx**, domain isteklerini bu porta **proxy** ile yollar.
 
 ## 1. Temizlik ve Yeniden Kurulum (Fresh Install)
 
@@ -101,14 +101,6 @@ Hazır snippet: [`deploy/aaPanel-carmedlegal-proxy.conf`](deploy/aaPanel-carmedl
 | Port değiştir | `WEB_PORT=8084 docker compose up -d` veya `.env` içinde `WEB_PORT=8083` |
 
 Port meşgulse: `WEB_PORT=8084` gibi ver.
-
----
-
-## İsteğe bağlı: Netlify
-
-**Sadece** Netlify’da barındıracaksan kullanılır; aaPanel kullanıyorsan **okuman gerekmez**.
-
-Repo’da `web/netlify.toml` vardır. Netlify ayarları: base `web`, build `npm run build`, publish `web/dist`.
 
 ---
 

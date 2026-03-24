@@ -69,7 +69,11 @@ export function EventProcessPage() {
           </p>
         </Card>
       </Section>
-      <Section title={designPage.gallery.title} lead={designPage.gallery.caption} className="bg-bg-muted/60 dark:bg-surface-900/30">
+      <Section
+        title={designPage.gallery.title}
+        lead={designPage.gallery.caption}
+        className="border-t border-accent-500/15 bg-gradient-to-b from-accent-500/[0.05] via-bg-muted/50 to-bg-muted/70 dark:from-accent-500/[0.08] dark:via-surface-900/35 dark:to-surface-950/50"
+      >
         <Carousel images={designPage.gallery.images} title={designPage.gallery.caption} />
       </Section>
     </>

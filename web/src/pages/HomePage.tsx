@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import {
   ctaBand,
   hero,
+  heroBackground,
+  homeVideo,
   introSection,
   pillarSections,
 } from '../content/siteContent'
@@ -10,6 +12,7 @@ import { usePageTitle } from '../hooks/usePageTitle'
 import { Section } from '../components/Section'
 import { Card } from '../components/Card'
 import { LinkButton } from '../components/Button'
+import { HomeHero } from '../components/HomeHero'
 
 const pillarIcons = {
   walk: Footprints,
@@ -21,41 +24,40 @@ export function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border">
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(ellipse 80% 60% at 50% -20%, var(--ui-hero-accent), transparent)`,
-          }}
-        />
-        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.03] dark:opacity-[0.03]" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-accent-600 sm:text-sm dark:text-accent-400">
-            {hero.kicker}
-          </p>
-          <h1 className="mt-4 text-center font-display text-4xl font-bold tracking-tight text-fg sm:text-6xl md:text-7xl">
-            {hero.title}
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-fg-muted sm:text-lg">
-            {hero.subtitle}
-          </p>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2">
-            {hero.stats.map((s) => (
-              <Card key={s.label} className="text-center sm:text-left">
-                <p className="text-xs font-medium uppercase tracking-wider text-accent-600 dark:text-accent-400">{s.label}</p>
-                <p className="mt-2 font-display text-xl font-semibold text-fg">{s.value}</p>
-              </Card>
-            ))}
+      <HomeHero
+        kicker={hero.kicker}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        stats={hero.stats}
+        backgroundImage={heroBackground.imageSrc}
+        backgroundAlt={heroBackground.imageAlt}
+      />
+
+      <section className="border-b border-border bg-bg py-14 sm:py-20 dark:bg-surface-950">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <h2 className="text-center font-display text-2xl font-semibold text-fg sm:text-3xl">{homeVideo.title}</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-muted">{homeVideo.lead}</p>
+          <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-[2rem] border border-border bg-bg-elevated shadow-lg ring-1 ring-black/5 dark:bg-surface-900 dark:ring-white/10">
+            {homeVideo.youtubeId ? (
+              <div className="aspect-video w-full">
+                <iframe
+                  title={homeVideo.title}
+                  src={`https://www.youtube-nocookie.com/embed/${homeVideo.youtubeId}?rel=0`}
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <div className="flex aspect-video flex-col items-center justify-center gap-2 bg-bg-muted px-6 text-center dark:bg-surface-800">
+                <p className="text-sm text-muted">Video henüz eklenmedi.</p>
+                <p className="max-w-md text-xs text-fg-muted">
+                  YouTube video kimliğini <code className="rounded bg-border px-1.5 py-0.5 text-[0.8rem]">siteContent.ts</code> içindeki{' '}
+                  <code className="rounded bg-border px-1.5 py-0.5 text-[0.8rem]">homeVideo.youtubeId</code> alanına yazın.
+                </p>
+              </div>
+            )}
           </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <LinkButton to="/basvuru">Başvuru sayfası</LinkButton>
-            <LinkButton to="/takvim" variant="secondary">
-              Takvim
-            </LinkButton>
-          </div>
-          <p className="mt-8 text-center text-xs text-muted">
-            Giriş görseli / video alanı: yüksek çözünürlüklü yaya temalı görsel veya belediye vitamı buraya yerleştirilebilir.
-          </p>
         </div>
       </section>
 
@@ -100,12 +102,7 @@ export function HomePage() {
             >
               SSS
             </Link>
-            <Link
-              to="/iletisim"
-              className="inline-flex items-center justify-center rounded-lg bg-accent-500 px-4 py-2.5 text-sm font-medium text-surface-950 no-underline hover:bg-accent-400"
-            >
-              İletişime geç
-            </Link>
+            <LinkButton to="/iletisim">İletişime geç</LinkButton>
           </div>
         </div>
       </section>

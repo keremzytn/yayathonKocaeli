@@ -1,8 +1,10 @@
+import { clsx } from 'clsx'
 import { Download } from 'lucide-react'
 import { designPage, evaluationPage, resourcesPage } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Card } from '../components/Card'
+import { primaryButtonClassName } from '../components/Button'
 import { Section } from '../components/Section'
 import { BadgeCheck, Gavel, Trophy } from 'lucide-react'
 
@@ -111,7 +113,7 @@ export function AwardsRulesPage() {
               {a.available ? (
                 <a
                   href={`/downloads/${a.filename}`}
-                  className="mt-4 inline-flex items-center justify-center rounded-lg bg-accent-500 px-4 py-2 text-sm font-medium text-surface-950 no-underline hover:bg-accent-400"
+                  className={clsx(primaryButtonClassName, 'mt-4')}
                   download
                 >
                   İndir

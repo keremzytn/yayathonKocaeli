@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-Tarayıcı: `http://localhost:5173/#/` (hash router, Netlify’daki mevcut bağlantı stiline uyumlu).
+Tarayıcı: `http://localhost:5173/`
 
 ## Üretim derlemesi
 
@@ -19,15 +19,7 @@ npm run build
 npm run preview
 ```
 
-Çıktı: `dist/`.
-
-## Netlify
-
-- **Base directory:** `web` (repo kökünden deploy ediyorsanız)
-- **Build command:** `npm run build`
-- **Publish directory:** `web/dist`
-
-Proje kökündeki `web/netlify.toml` aynı komutları kullanır; panelde base `web` seçilirse `publish` de `dist` olarak kalır.
+Çıktı: `dist/`. Üretim sunucusu (Docker/nginx/aaPanel) için kökteki `DEPLOY.md` dosyasına bakın.
 
 ## İçerik ve varlıklar
 

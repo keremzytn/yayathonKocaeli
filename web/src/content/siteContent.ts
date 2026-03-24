@@ -4,11 +4,12 @@ export const siteMeta = {
   title: 'Yayathon 2026 | Kocaeli Büyükşehir Belediyesi',
   description:
     'Kocaeli Yaya Ulaşımı Eylem Planı kapsamında İzmit ve Darıca için yaya odaklı fikir maratonu. 5–6 Haziran 2026.',
-  url: 'https://hackathon-kocaeli.netlify.app',
+  url: 'https://www.carmedlegal.com',
   locale: 'tr_TR',
 } as const
 
-export const applicationDeadlineIso = '2026-03-05T23:59:59+03:00'
+/** Son başvuru (başvuru sayfası geri sayımı). Etkinlik 5–6 Haziran 2026. */
+export const applicationDeadlineIso = '2026-05-25T23:59:59+03:00'
 
 export type NavItem = { to: string; label: string }
 
@@ -33,6 +34,19 @@ export const hero = {
     { label: 'Başarı Ödülleri', value: "Kişi başı 10.000 TL'ye varan" },
     { label: 'Etkinlik Tarihi', value: '5–6 Haziran 2026' },
   ],
+}
+
+/** Ana sayfa hero: tam genişlik arka plan (yerel dosya için `/hero-bg.jpg` vb.) */
+export const heroBackground = {
+  imageSrc: '/images/kocaeli.jpg',
+  imageAlt: 'Kocaeli kent görünümü',
+} as const
+
+/** Boş bırakılırsa video alanı yer tutucu gösterir; YouTube video kimliğini yazın. */
+export const homeVideo: { title: string; lead: string; youtubeId: string } = {
+  title: 'Kocaeli SKUp Projesi Kapanış Filmi',
+  lead: 'SKUp Kocaeli',
+  youtubeId: 'I38IVMBp_Ek',
 }
 
 export const introSection = {
@@ -197,9 +211,22 @@ export const designPage = {
     title: 'İlham galerisi',
     caption: 'Taktik şehircilik ve yaya öncelikli müdahale örneklerinden kareler (özet görseller).',
     images: [
-      { src: '/gallery-1.png', alt: 'Kent ve yaya odaklı düzenleme örneği 1' },
-      { src: '/gallery-2.png', alt: 'Kent ve yaya odaklı düzenleme örneği 2' },
-      { src: '/gallery-3.png', alt: 'Kent ve yaya odaklı düzenleme örneği 3' },
+      {
+        src: '/images/tactical-urbanism%20(1).png',
+        alt: 'Taktik şehircilik — ilham görseli 1',
+      },
+      {
+        src: '/images/tactical-urbanism%20(2).png',
+        alt: 'Taktik şehircilik — ilham görseli 2',
+      },
+      {
+        src: '/images/tactical-urbanism%20(3).png',
+        alt: 'Taktik şehircilik — ilham görseli 3',
+      },
+      {
+        src: '/images/tactical-urbanism%20(4).png',
+        alt: 'Taktik şehircilik — ilham görseli 4',
+      },
     ],
   },
 }
@@ -280,3 +307,16 @@ export const contactPage = {
     { name: 'WhatsApp', detail: 'Destek hattı yayınlandığında burada olacak.', href: null },
   ],
 }
+
+/** Etkinlik yeri — harita embed + Google Haritalar yönlendirmesi */
+export const contactVenue = {
+  mapTitle: 'Hackathon maratonu konumu (Luxor Garden Hotel)',
+  addressLine: 'Yahyakaptan, Kara Yolu Cd. No: 6, 41050 İzmit/Kocaeli',
+  /** Google Maps Embed API `q` parametresi (.env: VITE_GOOGLE_MAPS_EMBED_KEY) */
+  googleMapsPlaceQuery: 'Luxor Garden Hotel, Kara Yolu Cd. No: 6, 41050 İzmit, Kocaeli, Türkiye',
+  /** Anahtar yokken yedek: OpenStreetMap embed */
+  mapEmbedUrl:
+    'https://www.openstreetmap.org/export/embed.html?bbox=29.963%2C40.773%2C29.980%2C40.782&layer=mapnik&marker=40.777592%2C29.97171',
+  googleMapsUrl:
+    'https://www.google.com/maps/search/?api=1&query=Luxor+Garden+Hotel%2C+Kara+Yolu+Cd.+No%3A+6%2C+41050+%C4%B0zmit%2FKocaeli',
+} as const

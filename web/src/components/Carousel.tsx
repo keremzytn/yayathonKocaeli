@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { clsx } from 'clsx'
-import { Button } from './Button'
 
 export function Carousel({ images, title }: { images: { src: string; alt: string }[]; title: string }) {
   const [i, setI] = useState(0)
@@ -9,61 +8,100 @@ export function Carousel({ images, title }: { images: { src: string; alt: string
   const prev = useCallback(() => setI((x) => (x - 1 + n) % n), [n])
   const next = useCallback(() => setI((x) => (x + 1) % n), [n])
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prev()
-      if (e.key === 'ArrowRight') next()
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      prev()
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [prev, next])
+    if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      next()
+    }
+  }
 
-  const img = images[i]
-  if (!img) return null
+  if (n === 0) return null
+
+  const navBtn =
+    'absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 text-white shadow-lg backdrop-blur-md transition hover:border-white/25 hover:bg-black/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black/20 sm:h-12 sm:w-12'
 
   return (
-    <figure className="overflow-hidden rounded-2xl border border-border bg-card">
-      <div className="relative aspect-[16/10] bg-grid-bg">
-        <img src={img.src} alt={img.alt} className="h-full w-full object-cover" loading="lazy" width={1200} height={750} />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 py-6">
-          <figcaption className="text-sm text-gray-200">{title}</figcaption>
-          <p className="text-xs text-gray-400">
-            Görsel {i + 1} / {n}
-          </p>
-        </div>
-        <div className="absolute right-3 top-1/2 flex -translate-y-1/2 flex-col gap-2">
-          <Button
-            variant="secondary"
-            className="!px-2 !py-2"
-            onClick={prev}
-            aria-label="Önceki görsel"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="secondary"
-            className="!px-2 !py-2"
-            onClick={next}
-            aria-label="Sonraki görsel"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-      <div className="flex gap-1 p-3" role="tablist" aria-label="Galeri göstergeleri">
-        {images.map((_, idx) => (
-          <button
-            key={idx}
-            type="button"
-            role="tab"
-            aria-selected={idx === i}
-            className={clsx(
-              'h-2 flex-1 rounded-full transition',
-              idx === i ? 'bg-accent-500' : 'bg-border hover:bg-fg-muted',
-            )}
-            onClick={() => setI(idx)}
+    <figure className="mx-auto max-w-5xl">
+      <div
+        role="region"
+        aria-roledescription="carousel"
+        aria-label={title}
+        tabIndex={0}
+        onKeyDown={onKeyDown}
+        className="group/carousel overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18)] ring-1 ring-black/[0.04] outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 dark:bg-surface-900 dark:shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55)] dark:ring-white/[0.06]"
+      >
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-grid-bg md:aspect-[2/1]">
+          {images.map((im, idx) => (
+            <img
+              key={im.src}
+              src={im.src}
+              alt={im.alt}
+              width={1600}
+              height={1000}
+              loading={idx === 0 ? 'eager' : 'lazy'}
+              className={clsx(
+                'absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-500 ease-out',
+                idx === i ? 'z-10 opacity-100' : 'z-0 opacity-0 scale-[1.02]',
+              )}
+              aria-hidden={idx !== i}
+            />
+          ))}
+
+          <div
+            className="pointer-events-none absolute inset-0 z-[5] rounded-b-none bg-gradient-to-t from-black/[0.82] via-black/25 to-transparent md:via-black/20"
+            aria-hidden
           />
-        ))}
+          <div
+            className="pointer-events-none absolute inset-0 z-[6] rounded-b-none ring-1 ring-inset ring-black/10 dark:ring-white/[0.06]"
+            aria-hidden
+          />
+
+          <figcaption className="absolute inset-x-0 bottom-0 z-20 px-4 pb-4 pt-16 text-left sm:px-7 sm:pb-5 sm:pt-20">
+            <p className="max-w-2xl font-display text-base font-semibold leading-snug text-white drop-shadow-sm sm:text-lg">
+              {title}
+            </p>
+            <p className="mt-2 flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
+              <span className="h-0.5 w-6 rounded-full bg-accent-400 shadow-[0_0_12px_rgba(45,212,191,0.45)]" aria-hidden />
+              {i + 1} / {n}
+            </p>
+          </figcaption>
+
+          <button type="button" className={clsx(navBtn, 'left-3 sm:left-4')} onClick={prev} aria-label="Önceki görsel">
+            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
+          </button>
+          <button type="button" className={clsx(navBtn, 'right-3 sm:right-4')} onClick={next} aria-label="Sonraki görsel">
+            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
+          </button>
+        </div>
+
+        <div
+          className="flex gap-2 border-t border-border bg-bg-muted/80 p-3 backdrop-blur-md dark:border-white/10 dark:bg-surface-950/90 sm:gap-3 sm:p-4"
+          role="tablist"
+          aria-label="Galeri önizlemeleri"
+        >
+          {images.map((im, idx) => (
+            <button
+              key={im.src}
+              type="button"
+              role="tab"
+              aria-selected={idx === i}
+              aria-label={`Görsel ${idx + 1}`}
+              onClick={() => setI(idx)}
+              className={clsx(
+                'relative aspect-[4/3] min-h-0 flex-1 overflow-hidden rounded-xl transition-all duration-300 sm:max-h-[4.5rem]',
+                idx === i
+                  ? 'ring-2 ring-accent-500 ring-offset-2 ring-offset-bg dark:ring-accent-400 dark:ring-offset-surface-950'
+                  : 'opacity-55 ring-1 ring-transparent hover:opacity-90 hover:ring-border',
+              )}
+            >
+              <img src={im.src} alt="" className="h-full w-full object-cover" loading="lazy" width={200} height={150} />
+            </button>
+          ))}
+        </div>
       </div>
     </figure>
   )

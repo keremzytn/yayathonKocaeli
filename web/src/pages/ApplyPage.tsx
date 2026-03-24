@@ -313,7 +313,7 @@ export function ApplyPage() {
               setFile(fl ?? null)
               setFileLabel(fl?.name ?? null)
             }}
-            className="mt-2 block w-full text-sm text-fg-muted file:mr-3 file:rounded-lg file:border-0 file:bg-accent-500 file:px-3 file:py-2 file:text-sm file:font-medium file:text-surface-950"
+            className="mt-2 block w-full text-sm text-fg-muted file:mr-3 file:cursor-pointer file:rounded-xl file:border file:border-accent-600/25 file:bg-accent-600 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white file:shadow-sm file:transition file:hover:border-accent-500/40 file:hover:bg-accent-500 dark:file:border-accent-400/35 dark:file:bg-accent-500 dark:file:hover:bg-accent-400"
           />
           {fileLabel ? <p className="mt-1 text-xs text-muted">Seçilen: {fileLabel}</p> : null}
           <p className="mt-1 text-xs text-muted">Backend olmadan dosya yalnızca tarayıcıda kalır; gönderim simülasyonudur.</p>
@@ -330,9 +330,9 @@ export function ApplyPage() {
   return (
     <>
       <PageHero title="Başvuru" subtitle="Bireysel başvuru ile katılın; takım ataması komite tarafından yapılır." />
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <Countdown deadlineIso={applicationDeadlineIso} />
-        <Card className="mt-8">
+        <Card className="mt-6">
           {status === 'ok' ? (
             <p className="text-center text-green-600 dark:text-green-400">Başvurunuz alındı (simülasyon). Teşekkürler!</p>
           ) : (
