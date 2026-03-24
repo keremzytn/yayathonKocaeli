@@ -14,15 +14,13 @@ export type NavItem = { to: string; label: string }
 
 export const navItems: NavItem[] = [
   { to: '/', label: 'Ana Sayfa' },
-  { to: '/hakkinda', label: 'Hakkında' },
-  { to: '/katilim', label: 'Katılım (10×10)' },
-  { to: '/basvuru', label: 'Başvuru' },
-  { to: '/program', label: 'Program' },
-  { to: '/degerlendirme', label: 'Değerlendirme' },
-  { to: '/tasarim', label: 'Tasarım & İlham' },
-  { to: '/metodoloji', label: 'Metodoloji' },
-  { to: '/kaynaklar', label: 'Kaynaklar' },
+  { to: '/yarismaci-kunyesi', label: 'Yarışma künyesi' },
+  { to: '/etkinlik-suresi', label: 'Etkinlik süreci' },
+  { to: '/katilim-kosullari', label: 'Katılım koşulları' },
+  { to: '/oduller-ve-kurallar', label: 'Ödüller ve kurallar' },
+  { to: '/takvim', label: 'Takvim' },
   { to: '/sss', label: 'SSS' },
+  { to: '/basvuru', label: 'Başvuru' },
   { to: '/iletisim', label: 'İletişim' },
 ]
 

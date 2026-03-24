@@ -22,15 +22,15 @@ export function Countdown({ deadlineIso, label = 'Son başvuru' }: { deadlineIso
   const done = diff <= 0
 
   return (
-    <Card className="flex flex-wrap items-center justify-between gap-6 border-accent-500/30 bg-surface-900/90">
+    <Card className="flex flex-wrap items-center justify-between gap-6 border-accent-500/30">
       <div>
-        <p className="text-sm font-medium uppercase tracking-wider text-accent-400">{label}</p>
+        <p className="text-sm font-medium uppercase tracking-wider text-accent-600 dark:text-accent-400">{label}</p>
         <p className="mt-1 text-sm text-muted">Tarih bilgisi içerik dosyasından yönetilir.</p>
       </div>
       {done ? (
-        <p className="text-lg font-medium text-white">Başvuru süresi sona ermiştir.</p>
+        <p className="text-lg font-medium text-fg">Başvuru süresi sona ermiştir.</p>
       ) : (
-        <div className="flex gap-4 font-mono text-2xl font-semibold tabular-nums text-white sm:text-3xl" aria-live="polite">
+        <div className="flex gap-4 font-mono text-2xl font-semibold tabular-nums text-fg sm:text-3xl" aria-live="polite">
           <span title="Gün">
             <span className="text-muted text-lg not-italic sm:text-xl">G </span>
             {pad(d)}

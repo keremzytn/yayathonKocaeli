@@ -22,8 +22,8 @@ export function Carousel({ images, title }: { images: { src: string; alt: string
   if (!img) return null
 
   return (
-    <figure className="overflow-hidden rounded-2xl border border-border bg-surface-900/80">
-      <div className="relative aspect-[16/10] bg-surface-950">
+    <figure className="overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="relative aspect-[16/10] bg-grid-bg">
         <img src={img.src} alt={img.alt} className="h-full w-full object-cover" loading="lazy" width={1200} height={750} />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 py-6">
           <figcaption className="text-sm text-gray-200">{title}</figcaption>
@@ -57,7 +57,10 @@ export function Carousel({ images, title }: { images: { src: string; alt: string
             type="button"
             role="tab"
             aria-selected={idx === i}
-            className={clsx('h-2 flex-1 rounded-full transition', idx === i ? 'bg-accent-500' : 'bg-surface-700 hover:bg-surface-600')}
+            className={clsx(
+              'h-2 flex-1 rounded-full transition',
+              idx === i ? 'bg-accent-500' : 'bg-border hover:bg-fg-muted',
+            )}
             onClick={() => setI(idx)}
           />
         ))}

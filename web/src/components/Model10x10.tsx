@@ -20,7 +20,7 @@ export function Model10x10() {
       <Card className="overflow-hidden p-4 sm:p-6">
         <p className="mb-4 text-sm text-muted">Izgarada bir hücreye tıklayın — takım ve sıra numarası gösterilir.</p>
         <div
-          className="grid max-h-[min(70vh,520px)] gap-0.5 overflow-auto rounded-xl bg-surface-950 p-2 sm:gap-1"
+          className="grid max-h-[min(70vh,520px)] gap-0.5 overflow-auto rounded-xl bg-grid-bg p-2 sm:gap-1"
           style={{ gridTemplateColumns: 'repeat(10, minmax(0, 1fr))' }}
           role="grid"
           aria-label="On takım on kişi modeli"
@@ -37,7 +37,7 @@ export function Model10x10() {
                 className={
                   active
                     ? 'aspect-square min-h-[24px] rounded-md bg-accent-500 text-surface-950 sm:min-h-[28px]'
-                    : 'aspect-square min-h-[24px] rounded-md bg-surface-800/90 text-transparent hover:bg-accent-500/40 sm:min-h-[28px]'
+                    : 'aspect-square min-h-[24px] rounded-md bg-bg-elevated text-transparent hover:bg-accent-500/40 dark:bg-surface-800/90 sm:min-h-[28px]'
                 }
                 title={`Takım ${c.team}, ${c.seat}. sıra`}
               >
@@ -50,11 +50,11 @@ export function Model10x10() {
         </div>
       </Card>
       <Card className="h-fit">
-        <h3 className="font-display text-lg font-semibold text-white">Seçim</h3>
+        <h3 className="font-display text-lg font-semibold text-fg">Seçim</h3>
         {selected ? (
-          <p className="mt-3 text-sm leading-relaxed text-gray-300">
-            <strong className="text-white">Takım {selected.team}</strong> — bu takımdaki{' '}
-            <strong className="text-white">{selected.seat}. katılımcı</strong> konumu. Gerçek atama organizasyon komitesi
+          <p className="mt-3 text-sm leading-relaxed text-fg-muted">
+            <strong className="text-fg">Takım {selected.team}</strong> — bu takımdaki{' '}
+            <strong className="text-fg">{selected.seat}. katılımcı</strong> konumu. Gerçek atama organizasyon komitesi
             tarafından disiplin ve denge kriterlerine göre yapılır.
           </p>
         ) : (

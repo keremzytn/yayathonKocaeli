@@ -8,8 +8,8 @@ const variants: Record<Variant, string> = {
   primary:
     'bg-accent-500 text-surface-950 font-medium hover:bg-accent-400 focus-visible:ring-2 focus-visible:ring-accent-400',
   secondary:
-    'bg-surface-800 text-gray-100 border border-border hover:bg-surface-700 focus-visible:ring-2 focus-visible:ring-accent-400',
-  ghost: 'text-accent-400 hover:text-accent-500 hover:bg-surface-800/60',
+    'bg-bg-elevated text-fg border border-border hover:bg-bg-muted dark:hover:bg-surface-800 focus-visible:ring-2 focus-visible:ring-accent-400',
+  ghost: 'text-accent-600 hover:text-accent-500 hover:bg-bg-muted dark:text-accent-400 dark:hover:bg-surface-800/60 dark:hover:text-accent-500',
 }
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {

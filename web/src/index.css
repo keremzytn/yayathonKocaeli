@@ -1,8 +1,55 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --ui-bg: #f8fafc;
+  --ui-bg-muted: #f1f5f9;
+  --ui-bg-elevated: #ffffff;
+  --ui-fg: #0f172a;
+  --ui-fg-muted: #64748b;
+  --ui-border: #e2e8f0;
+  --ui-card: #ffffff;
+  --ui-nav-hover: #f1f5f9;
+  --ui-nav-active: #e2e8f0;
+  --ui-grid-bg: #e2e8f0;
+  --ui-hero-from: rgba(241, 245, 249, 0.95);
+  --ui-hero-to: #f8fafc;
+  --ui-hero-accent: rgba(13, 148, 136, 0.12);
+  --ui-focus-ring: #2dd4bf;
+}
+
+html.dark {
+  --ui-bg: #0b1220;
+  --ui-bg-muted: #111827;
+  --ui-bg-elevated: #1f2937;
+  --ui-fg: #e5e7eb;
+  --ui-fg-muted: #9ca3af;
+  --ui-border: #334155;
+  --ui-card: rgb(31 41 55 / 0.85);
+  --ui-nav-hover: rgb(31 41 55 / 0.6);
+  --ui-nav-active: #1f2937;
+  --ui-grid-bg: #030712;
+  --ui-hero-from: rgb(17 24 39 / 0.9);
+  --ui-hero-to: #0b1220;
+  --ui-hero-accent: rgba(13, 148, 136, 0.25);
+}
+
 @theme {
   --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: var(--ui-bg);
+  --color-bg-muted: var(--ui-bg-muted);
+  --color-bg-elevated: var(--ui-bg-elevated);
+  --color-fg: var(--ui-fg);
+  --color-fg-muted: var(--ui-fg-muted);
+  --color-border: var(--ui-border);
+  --color-card: var(--ui-card);
+  --color-muted: var(--ui-fg-muted);
+  --color-nav-hover: var(--ui-nav-hover);
+  --color-nav-active: var(--ui-nav-active);
+  --color-grid-bg: var(--ui-grid-bg);
 
   --color-surface-950: #0b1220;
   --color-surface-900: #111827;
@@ -12,9 +59,6 @@
   --color-accent-500: #0d9488;
   --color-accent-400: #2dd4bf;
   --color-accent-600: #0f766e;
-
-  --color-muted: #9ca3af;
-  --color-border: #334155;
 }
 
 html {
@@ -25,8 +69,8 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-body);
-  background: var(--color-surface-950);
-  color: #e5e7eb;
+  background: var(--ui-bg);
+  color: var(--ui-fg);
 }
 
 .font-display {
@@ -34,6 +78,6 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent-400);
+  outline: 2px solid var(--ui-focus-ring);
   outline-offset: 2px;
 }

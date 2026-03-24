@@ -14,12 +14,15 @@ export function ContactPage() {
         <div className="grid gap-6 md:grid-cols-3">
           {contactPage.channels.map((c) => (
             <Card key={c.name} className="flex flex-col">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/15 text-accent-400">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400">
                 {c.name === 'E-posta' ? <Mail className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
               </div>
-              <h3 className="mt-4 font-display text-base font-semibold text-white">{c.name}</h3>
+              <h3 className="mt-4 font-display text-base font-semibold text-fg">{c.name}</h3>
               {c.href ? (
-                <a href={c.href} className="mt-2 text-sm text-accent-400 no-underline hover:underline">
+                <a
+                  href={c.href}
+                  className="mt-2 text-sm text-accent-600 no-underline hover:underline dark:text-accent-400"
+                >
                   {c.detail}
                 </a>
               ) : (

@@ -83,9 +83,9 @@ export function ApplyPage() {
     if (f.type === 'text' || f.type === 'email' || f.type === 'tel') {
       return (
         <div key={f.name}>
-          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-gray-200">
+          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-fg">
             {f.label}
-            {f.required ? <span className="text-red-400"> *</span> : null}
+            {f.required ? <span className="text-red-500 dark:text-red-400"> *</span> : null}
           </label>
           <input
             id={fieldId(f.name)}
@@ -96,7 +96,7 @@ export function ApplyPage() {
             onChange={(e) => setField(f.name, e.target.value)}
             placeholder={f.placeholder}
             className={clsx(
-              'mt-2 w-full rounded-lg border bg-surface-950/80 px-3 py-2 text-sm text-white placeholder:text-gray-600 focus-visible:outline-none focus-visible:ring-2',
+              'mt-2 w-full rounded-lg border bg-bg-elevated px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus-visible:outline-none focus-visible:ring-2 dark:bg-surface-950/80',
               common,
             )}
           />
@@ -108,9 +108,9 @@ export function ApplyPage() {
     if (f.type === 'select') {
       return (
         <div key={f.name}>
-          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-gray-200">
+          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-fg">
             {f.label}
-            {f.required ? <span className="text-red-400"> *</span> : null}
+            {f.required ? <span className="text-red-500 dark:text-red-400"> *</span> : null}
           </label>
           <select
             id={fieldId(f.name)}
@@ -118,7 +118,7 @@ export function ApplyPage() {
             value={String(values[f.name] ?? '')}
             onChange={(e) => setField(f.name, e.target.value)}
             className={clsx(
-              'mt-2 w-full rounded-lg border bg-surface-950/80 px-3 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2',
+              'mt-2 w-full rounded-lg border bg-bg-elevated px-3 py-2 text-sm text-fg focus-visible:outline-none focus-visible:ring-2 dark:bg-surface-950/80',
               common,
             )}
           >
@@ -137,13 +137,13 @@ export function ApplyPage() {
       const v = String(values[f.name] ?? '')
       return (
         <fieldset key={f.name} className="space-y-2">
-          <legend className="text-sm font-medium text-gray-200">
+          <legend className="text-sm font-medium text-fg">
             {f.label}
-            {f.required ? <span className="text-red-400"> *</span> : null}
+            {f.required ? <span className="text-red-500 dark:text-red-400"> *</span> : null}
           </legend>
           <div className="mt-2 flex flex-wrap gap-4">
             {f.options.map((o) => (
-              <label key={o.value} className="flex cursor-pointer items-center gap-2 text-sm text-gray-300">
+              <label key={o.value} className="flex cursor-pointer items-center gap-2 text-sm text-fg-muted">
                 <input
                   type="radio"
                   name={f.name}
@@ -165,10 +165,10 @@ export function ApplyPage() {
       const arr = Array.isArray(values[f.name]) ? (values[f.name] as string[]) : []
       return (
         <fieldset key={f.name} className="space-y-2">
-          <legend className="text-sm font-medium text-gray-200">{f.label}</legend>
+          <legend className="text-sm font-medium text-fg">{f.label}</legend>
           <div className="mt-2 grid gap-2 sm:grid-cols-2">
             {f.options.map((o) => (
-              <label key={o.value} className="flex cursor-pointer items-center gap-2 text-sm text-gray-300">
+              <label key={o.value} className="flex cursor-pointer items-center gap-2 text-sm text-fg-muted">
                 <input
                   type="checkbox"
                   checked={arr.includes(o.value)}
@@ -192,9 +192,9 @@ export function ApplyPage() {
       const wc = countWords(s)
       return (
         <div key={f.name}>
-          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-gray-200">
+          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-fg">
             {f.label}
-            {f.required ? <span className="text-red-400"> *</span> : null}
+            {f.required ? <span className="text-red-500 dark:text-red-400"> *</span> : null}
           </label>
           <textarea
             id={fieldId(f.name)}
@@ -204,7 +204,7 @@ export function ApplyPage() {
             onChange={(e) => setField(f.name, e.target.value)}
             placeholder={f.placeholder}
             className={clsx(
-              'mt-2 w-full resize-y rounded-lg border bg-surface-950/80 px-3 py-2 text-sm text-white placeholder:text-gray-600 focus-visible:outline-none focus-visible:ring-2',
+              'mt-2 w-full resize-y rounded-lg border bg-bg-elevated px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus-visible:outline-none focus-visible:ring-2 dark:bg-surface-950/80',
               common,
             )}
           />
@@ -219,7 +219,7 @@ export function ApplyPage() {
     if (f.type === 'file') {
       return (
         <div key={f.name}>
-          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-gray-200">
+          <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-fg">
             {f.label}
           </label>
           <input
@@ -232,7 +232,7 @@ export function ApplyPage() {
               setFile(fl ?? null)
               setFileLabel(fl?.name ?? null)
             }}
-            className="mt-2 block w-full text-sm text-gray-300 file:mr-3 file:rounded-lg file:border-0 file:bg-accent-500 file:px-3 file:py-2 file:text-sm file:font-medium file:text-surface-950"
+            className="mt-2 block w-full text-sm text-fg-muted file:mr-3 file:rounded-lg file:border-0 file:bg-accent-500 file:px-3 file:py-2 file:text-sm file:font-medium file:text-surface-950"
           />
           {fileLabel ? <p className="mt-1 text-xs text-muted">Seçilen: {fileLabel}</p> : null}
           <p className="mt-1 text-xs text-muted">Backend olmadan dosya yalnızca tarayıcıda kalır; gönderim simülasyonudur.</p>
@@ -250,7 +250,7 @@ export function ApplyPage() {
         <Countdown deadlineIso={applicationDeadlineIso} />
         <Card className="mt-8">
           {status === 'ok' ? (
-            <p className="text-center text-green-400">Başvurunuz alındı (simülasyon). Teşekkürler!</p>
+            <p className="text-center text-green-600 dark:text-green-400">Başvurunuz alındı (simülasyon). Teşekkürler!</p>
           ) : (
             <form onSubmit={onSubmit} className="space-y-8">
               {applicationFormFields.map(renderField)}
