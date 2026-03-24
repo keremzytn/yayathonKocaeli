@@ -1,52 +1,122 @@
 # Yayathon web — deploy rehberi
 
-Statik React (Vite) uygulaması `web/` klasöründe. Üretim çıktısı `web/dist`.
+Uygulama `web/` içinde; üretim çıktısı `web/dist`. **Netlify kullanmıyorsan** aşağıdaki “aaPanel” bölümü senin için; Netlify bölümünü **atlayabilirsin**.
 
-## 1. Docker ile (önerilen test / sunucu)
+---
 
-Proje kökünde:
+## aaPanel + CentOS + Docker (ana senaryo)
+
+Özet: Site **Docker** içinde çalışır (port **8083**). aaPanel’deki **nginx**, domain isteklerini bu porta **proxy** ile yollar. Netlify gerekmez.
+
+## 1. Temizlik ve Yeniden Kurulum (Fresh Install)
+
+Eğer mevcut dosyaları tamamen silip sıfırdan kurmak isterseniz (DİKKAT: Tüm veriler silinir):
+
+```bash
+# Bulunduğunuz klasördeki her şeyi siler (Gizli dosyalar .git dahil)
+rm -rf ./* ./.*
+```
+
+## 2. Projeyi Klonlama
+
+```bash
+git clone https://github.com/keremzytn/yayathonKocaeli.git .
+### Adım 1 — Projeyi sunucuya al
+
+```bash
+cd /path/to
+git clone <repo-url> yayathonKocaeli
+cd yayathonKocaeli
+```
+
+### Adım 2 — Docker’ı çalıştır
 
 ```bash
 docker compose up --build -d
 ```
 
-- Site: **http://localhost:8080** (router hash kullandığı için örnek: `http://localhost:8080/#/`)
-
-Durdurmak:
+Kontrol:
 
 ```bash
-docker compose down
+curl -I http://127.0.0.1:8083/
 ```
 
-Sadece imaj derleyip elle çalıştırmak:
+**200 OK** görmelisin. Görmüyorsan önce bunu düzelt (port çakışması için `WEB_PORT=8084` vb. kullanılabilir, `docker-compose.yml`).
+
+### Adım 3 — aaPanel nginx’e proxy dosyası ekle
+
+Panel, site için şunu zaten include eder:
+
+`/www/server/panel/vhost/nginx/extension/carmedlegal.com/*.conf`
+
+Bu klasörde **yeni dosya** oluştur (örnek ad: `docker_proxy.conf`):
 
 ```bash
-docker build -f web/Dockerfile -t yayathon-web ./web
-docker run --rm -p 8080:80 yayathon-web
+nano /www/server/panel/vhost/nginx/extension/carmedlegal.com/docker_proxy.conf
 ```
 
-## 2. Netlify / statik hosting
+İçeriği repodaki dosyadan kopyala veya şunu yapıştır:
 
-Repo kökünde `web/netlify.toml` var. Netlify’da:
+```nginx
+location ^~ / {
+    proxy_pass http://127.0.0.1:8083;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
 
-- **Base directory:** `web`
-- **Build command:** `npm run build`
-- **Publish directory:** `web/dist`
+**Not:** Domain klasörü `carmedlegal.com` değilse yolu kendi sitene göre değiştir (`extension/alanadiniz.com/`).
 
-## 3. Domain (ör. carmedlegal.com)
+### Adım 4 — Nginx’i yeniden yükle
 
-Docker konteyneri **80** portunda HTTP sunar. Gerçek domain için:
+```bash
+nginx -t && nginx -s reload
+```
 
-1. Sunucuda reverse proxy (nginx, Caddy, Traefik) veya load balancer ile **HTTPS** açın.
-2. `carmedlegal.com` isteğini konteynerin `80` portuna yönlendirin.
+### Adım 5 — Domain test
 
-TLS sertifikası için genelde Let’s Encrypt (Caddy/Traefik otomatik yapar) kullanılır.
+```bash
+curl -I https://carmedlegal.com/
+```
 
-## 4. Yerelde sadece build kontrolü
+Hâlâ **403** ise:
+
+1. CentOS SELinux: `setsebool -P httpd_can_network_connect 1` sonra tekrar dene.
+2. Ana vhost’taki **`location ~ .*\.(js|css)?$`** ve büyük resim `location ~` bloklarını panelden yorum satırı yap (istekler diske gitmesin).
+3. `tail -n 30 /www/wwwlogs/carmedlegal.com.error.log` ile hatayı oku.
+
+Hazır snippet: [`deploy/aaPanel-carmedlegal-proxy.conf`](deploy/aaPanel-carmedlegal-proxy.conf)
+
+---
+
+## Docker komutları (özet)
+
+| Ne | Komut |
+|----|--------|
+| Çalıştır | `docker compose up --build -d` |
+| Durdur | `docker compose down` |
+| Port değiştir | `WEB_PORT=8084 docker compose up -d` veya `.env` içinde `WEB_PORT=8083` |
+
+Port meşgulse: `WEB_PORT=8084` gibi ver.
+
+---
+
+## İsteğe bağlı: Netlify
+
+**Sadece** Netlify’da barındıracaksan kullanılır; aaPanel kullanıyorsan **okuman gerekmez**.
+
+Repo’da `web/netlify.toml` vardır. Netlify ayarları: base `web`, build `npm run build`, publish `web/dist`.
+
+---
+
+## Yerelde build kontrolü
 
 ```bash
 cd web
 npm ci
 npm run build
-npm run preview   # önizleme: genelde http://localhost:4173
+npm run preview
 ```

@@ -1,10 +1,11 @@
-# Test ortamı: http://localhost:8080
-# Üretimde carmedlegal.com için bu konteynerin önüne TLS terminasyonu (Traefik, Caddy, nginx vb.) koyun.
+# Test ortamı varsayılan: http://localhost:8083
+# Port değiştirmek: WEB_PORT=3000 docker compose up -d
+# Üretimde carmedlegal.com için önüne TLS terminasyonu (Traefik, Caddy, nginx vb.) koyun.
 services:
   web:
     build:
       context: ./web
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "${WEB_PORT:-8083}:80"
     restart: unless-stopped
