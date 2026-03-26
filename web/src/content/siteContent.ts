@@ -298,6 +298,50 @@ export const faqItems = [
   },
 ]
 
+export type Announcement = {
+  slug: string
+  title: string
+  dateIso: string
+  summary: string
+  body: string[]
+}
+
+export const announcements: Announcement[] = [
+  {
+    slug: 'basvurular-acildi',
+    title: 'Başvurular açıldı',
+    dateIso: '2026-03-27',
+    summary: 'Yayathon 2026 bireysel başvuruları açıldı. Takımlar organizasyon komitesi tarafından oluşturulacaktır.',
+    body: [
+      'Başvurular bireysel olarak alınır. Hazır takım başvuruları kabul edilmez.',
+      'Katılımcı profilleri; disiplin çeşitliliği ve denge kriterleri gözetilerek 10×10 modeliyle hibrit takımlara dağıtılır.',
+      'Başvuru adımlarını tamamladıktan sonra gönderim ekranında “Başvuruyu gönder” ile işlemi bitirebilirsiniz.',
+    ],
+  },
+  {
+    slug: 'saha-kesfi-programi-duyurusu',
+    title: 'Saha keşfi programı duyurusu',
+    dateIso: '2026-04-10',
+    summary: '5 Haziran saha keşfi programının ana akışı ve buluşma noktaları duyuruldu.',
+    body: [
+      'Saha keşfi, İzmit kent merkezi odaklı tramvay turu ve rehberli yürüyüşleri kapsar.',
+      'Katılımcıların rahat yürüyüş ayakkabısı ve hava koşullarına uygun ekipmanla gelmeleri önerilir.',
+      'Detaylı program “Takvim” sayfasında güncellenecektir.',
+    ],
+  },
+  {
+    slug: 'sss-guncellemesi',
+    title: 'SSS güncellemesi',
+    dateIso: '2026-04-18',
+    summary: 'Lojistik ve etkinlik kuralları hakkında yeni sorular eklendi, yanıtlar güncellendi.',
+    body: [
+      'Kendi bilgisayarınızı getirmeniz beklenir; sınırlı sayıda yazılım/donanım desteği sağlanabilir.',
+      'Etkinlik günü iaşe organizasyon tarafından karşılanacaktır.',
+      'Yeni sorular için “SSS” sayfasını ziyaret edebilirsiniz.',
+    ],
+  },
+]
+
 export const contactPage = {
   title: 'İletişim ve destek',
   email: 'hackathon@kocaeli.bel.tr',
