@@ -4,7 +4,7 @@ import { designPage, evaluationPage, resourcesPage } from '../content/siteConten
 import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Card } from '../components/Card'
-import { primaryButtonClassName } from '../components/Button'
+import { primaryButtonClassName } from '../components/buttonStyles'
 import { Section } from '../components/Section'
 import { BadgeCheck, Gavel, Trophy } from 'lucide-react'
 
