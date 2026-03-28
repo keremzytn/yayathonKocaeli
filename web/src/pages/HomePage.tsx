@@ -4,6 +4,7 @@ import {
   ctaBand,
   hero,
   heroBackground,
+  homePrizesSection,
   homeVideo,
   introSection,
   pillarSections,
@@ -13,6 +14,8 @@ import { Section } from '../components/Section'
 import { Card } from '../components/Card'
 import { LinkButton } from '../components/Button'
 import { HomeHero } from '../components/HomeHero'
+import { PrizeShowcase } from '../components/PrizeShowcase'
+import { HomeAnnouncements } from '../components/HomeAnnouncements'
 
 const pillarIcons = {
   walk: Footprints,
@@ -61,6 +64,8 @@ export function HomePage() {
         </div>
       </section>
 
+      <HomeAnnouncements />
+
       <Section title={introSection.title} lead={introSection.lead}>
         <ul className="max-w-3xl space-y-4">
           {introSection.bullets.map((b) => (
@@ -89,6 +94,10 @@ export function HomePage() {
             )
           })}
         </div>
+      </Section>
+
+      <Section title={homePrizesSection.title} lead={homePrizesSection.lead} className="border-t border-border bg-bg-muted/40 dark:bg-surface-900/25">
+        <PrizeShowcase mode="home" />
       </Section>
 
       <section className="border-t border-border bg-gradient-to-br from-bg-muted to-bg py-16 dark:from-surface-900 dark:to-surface-950 sm:py-20">

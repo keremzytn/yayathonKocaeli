@@ -6,6 +6,7 @@ import { PageHero } from '../components/PageHero'
 import { Card } from '../components/Card'
 import { primaryButtonClassName } from '../components/buttonStyles'
 import { Section } from '../components/Section'
+import { PrizeShowcase } from '../components/PrizeShowcase'
 import { BadgeCheck, Gavel, Trophy } from 'lucide-react'
 
 export function AwardsRulesPage() {
@@ -70,19 +71,7 @@ export function AwardsRulesPage() {
         <Card className="relative overflow-hidden">
           <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
           <div className="pl-2">
-          <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.prizes.title}</h2>
-          <div className="mt-6 overflow-x-auto rounded-xl border border-border">
-            <table className="w-full text-sm">
-              <tbody>
-                {evaluationPage.prizes.rows.map((r) => (
-                  <tr key={r.rank} className="border-b border-border last:border-0">
-                    <td className="px-4 py-3 font-medium text-fg">{r.rank}</td>
-                    <td className="px-4 py-3 text-right font-mono text-accent-600 dark:text-accent-400">{r.amount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+            <PrizeShowcase mode="page" />
           </div>
         </Card>
       </div>

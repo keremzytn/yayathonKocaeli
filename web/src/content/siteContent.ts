@@ -173,13 +173,21 @@ export const evaluationPage = {
     ],
   },
   prizes: {
-    title: 'Başarı ödülleri (kişi başı hediye çeki)',
+    title: 'Başarı ödülleri',
+    subtitle:
+      'Ödüller, jüri değerlendirmesiyle belirlenen derecelere göre kazanan ekiplerin tüm üyelerine kişi başı hediye çeki olarak tanımlanır.',
     rows: [
       { rank: 'Birinci ekip', amount: '10.000 TL' },
       { rank: 'İkinci ekip', amount: '5.000 TL' },
       { rank: 'Üçüncü ekip', amount: '2.500 TL' },
     ],
   },
+}
+
+export const homePrizesSection = {
+  title: 'Başarı ödülleri',
+  lead:
+    'Üç derece için kişi başı hediye çekleri. Jüri yapısı, puanlama ve diğer kurallar için ödüller sayfasına göz atın.',
 }
 
 export const designPage = {
@@ -306,6 +314,11 @@ export type Announcement = {
   body: string[]
 }
 
+/** Ana sayfadaki duyuru listesi: tüm kayıtlar; görünür alan yüksekliği `visibleRows` satıra göre. */
+export const homeAnnouncementsConfig = {
+  visibleRows: 3,
+} as const
+
 export const announcements: Announcement[] = [
   {
     slug: 'basvurular-acildi',
@@ -338,6 +351,66 @@ export const announcements: Announcement[] = [
       'Kendi bilgisayarınızı getirmeniz beklenir; sınırlı sayıda yazılım/donanım desteği sağlanabilir.',
       'Etkinlik günü iaşe organizasyon tarafından karşılanacaktır.',
       'Yeni sorular için “SSS” sayfasını ziyaret edebilirsiniz.',
+    ],
+  },
+  {
+    slug: 'mentor-takvimi',
+    title: 'Mentor görüşme takvimi',
+    dateIso: '2026-04-22',
+    summary: 'Hackathon günü mentorluk slotları ve branş bazlı masa düzeni duyuruldu.',
+    body: [
+      'Mimarlık, ulaşım planlama ve yazılım mentorları için ayrı istişare alanları belirlendi.',
+      'Slotlar, kayıt sonrası katılımcı panelinden görüntülenebilecek.',
+    ],
+  },
+  {
+    slug: 'kayit-hatirlatma',
+    title: 'Son başvuru tarihi hatırlatması',
+    dateIso: '2026-05-01',
+    summary: 'Bireysel başvurular 25 Mayıs 2026 saat 23:59’a kadar alınmaya devam edecek.',
+    body: [
+      'Başvuru formunda zorunlu alanların tamamlandığından emin olun.',
+      'Onay e-postası gönderiminde gecikme yaşanmaması için iletişim bilgilerinizi kontrol edin.',
+    ],
+  },
+  {
+    slug: 'veri-paketi-guncelleme',
+    title: 'Teknik veri paketi güncellemesi',
+    dateIso: '2026-05-08',
+    summary: 'İzmit ve Darıca için güncel pafta özetleri ve yaya güvenliği istatistikleri pakete eklendi.',
+    body: [
+      'İndirilebilir kaynaklar sayfasından yeni sürüme erişebilirsiniz (yayınlandığında).',
+      'Önceki çalışmalarınızı yeni katmanlarla uyumlu hale getirmeniz önerilir.',
+    ],
+  },
+  {
+    slug: 'ulasim-ve-otopark',
+    title: 'Ulaşım ve otopark bilgisi',
+    dateIso: '2026-05-12',
+    summary: 'Luxor Garden Park Hotel çevresi toplu taşıma hatları ve misafir otopark yönlendirmesi paylaşıldı.',
+    body: [
+      'İzmit merkezden tramvay ve otobüs bağlantıları için özet harita eklendi.',
+      'Etkinlik günü vale ve alternatif park alanları organizasyon tarafından iletilecek.',
+    ],
+  },
+  {
+    slug: 'sunum-formati',
+    title: 'Jüri sunum formatı',
+    dateIso: '2026-05-15',
+    summary: '5 dakikalık sunumda beklenen başlıklar ve yedek materyal (poster / kısa video) kuralları netleştirildi.',
+    body: [
+      'Sunum şablonu indirilebilir kaynaklar bölümünde yer alacaktır.',
+      'Teknik aksaklıklar için USB yedek ve PDF çıktı getirmeniz tavsiye edilir.',
+    ],
+  },
+  {
+    slug: 'saha-kesfi-uyarisi',
+    title: 'Saha keşfi hava ve ekipman',
+    dateIso: '2026-05-20',
+    summary: '5 Haziran saha programı için hava durumuna uygun kıyafet ve rahat ayakkabı zorunluluğu hatırlatması.',
+    body: [
+      'Uzun süre ayakta ve yürüyüş içeren programda su ve şapka bulundurmanız önerilir.',
+      'Özel sağlık durumunuzu kayıt sırasında bildirmeniz önemlidir.',
     ],
   },
 ]
