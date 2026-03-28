@@ -3,6 +3,7 @@ import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Card } from '../components/Card'
 import { Building2, CalendarDays, MapPinned } from 'lucide-react'
+import { Reveal } from '../components/Reveal'
 
 export function CompetitionCreditsPage() {
   usePageTitle('Yarışma künyesi')
@@ -35,7 +36,7 @@ export function CompetitionCreditsPage() {
         </div>
       </PageHero>
 
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <Reveal as="section" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="mb-8 flex items-end justify-between gap-4 border-b border-border pb-4">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-fg sm:text-3xl">Kurumsal Çerçeve</h2>
           <p className="text-xs uppercase tracking-[0.14em] text-muted">Yayathon 2026</p>
@@ -56,7 +57,7 @@ export function CompetitionCreditsPage() {
             </Card>
           ))}
         </div>
-      </section>
+      </Reveal>
     </>
   )
 }

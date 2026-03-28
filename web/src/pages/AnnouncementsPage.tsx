@@ -4,6 +4,7 @@ import { PageHero } from '../components/PageHero'
 import { AnnouncementRow } from '../components/AnnouncementRow'
 import { announcements } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { Reveal } from '../components/Reveal'
 
 export function AnnouncementsPage() {
   usePageTitle('Duyurular')
@@ -37,7 +38,7 @@ export function AnnouncementsPage() {
         containerClassName="max-w-6xl"
       />
 
-      <div className="border-b border-border bg-bg py-12 dark:bg-surface-950 sm:py-16">
+      <Reveal className="border-b border-border bg-bg py-12 dark:bg-surface-950 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="overflow-hidden rounded-2xl border border-border bg-bg-elevated shadow-sm dark:bg-surface-900/40 dark:shadow-black/20">
             <div className="border-b border-border bg-bg-muted/40 px-5 py-4 dark:bg-surface-900/60 sm:px-6 sm:py-5">
@@ -59,7 +60,7 @@ export function AnnouncementsPage() {
             </ul>
           </div>
         </div>
-      </div>
+      </Reveal>
 
       <AnnouncementDetailModal announcement={selected ?? null} onClose={closeModal} />
     </>

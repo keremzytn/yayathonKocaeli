@@ -18,6 +18,7 @@ import { HomeHero } from '../components/HomeHero'
 import { PrizeShowcase } from '../components/PrizeShowcase'
 import { HomeAnnouncements } from '../components/HomeAnnouncements'
 import { Countdown } from '../components/Countdown'
+import { Reveal } from '../components/Reveal'
 
 const pillarIcons = {
   walk: Footprints,
@@ -30,17 +31,19 @@ export function HomePage() {
   return (
     <>
       {/* 1. Hero — ilk dikkat ve marka tonu */}
-      <HomeHero
-        kicker={hero.kicker}
-        title={hero.title}
-        subtitle={hero.subtitle}
-        stats={hero.stats}
-        backgroundImage={heroBackground.imageSrc}
-        backgroundAlt={heroBackground.imageAlt}
-      />
+      <Reveal rootMargin="0px 0px 0px 0px">
+        <HomeHero
+          kicker={hero.kicker}
+          title={hero.title}
+          subtitle={hero.subtitle}
+          stats={hero.stats}
+          backgroundImage={heroBackground.imageSrc}
+          backgroundAlt={heroBackground.imageAlt}
+        />
+      </Reveal>
 
       {/* 2. Hakkında — "Bu nedir?" sorusunu yanıtla + video ile duygusal bağ kur */}
-      <section className="border-b border-border py-16 sm:py-20">
+      <Reveal as="section" className="border-b border-border py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Sol: metin içeriği */}
@@ -84,48 +87,56 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* 3. Misyon kartları — değer teklifini somutlaştır */}
-      <Section className="bg-bg-muted/60 dark:bg-surface-900/40">
-        <div className="grid gap-8 md:grid-cols-2">
-          {pillarSections.map((p) => {
-            const Icon = pillarIcons[p.icon]
-            return (
-              <Card key={p.title} className="flex flex-col gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/15 text-accent-600 dark:text-accent-400">
-                  <Icon className="h-6 w-6" aria-hidden />
-                </div>
-                <h3 className="font-display text-xl font-semibold text-fg">{p.title}</h3>
-                <p className="text-muted leading-relaxed">{p.body}</p>
-              </Card>
-            )
-          })}
-        </div>
-      </Section>
+      <Reveal>
+        <Section className="bg-bg-muted/60 dark:bg-surface-900/40">
+          <div className="grid gap-8 md:grid-cols-2">
+            {pillarSections.map((p, i) => {
+              const Icon = pillarIcons[p.icon]
+              return (
+                <Reveal key={p.title} staggerStep={Math.min(i, 3)} className="h-full">
+                  <Card className="flex h-full flex-col gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/15 text-accent-600 dark:text-accent-400">
+                      <Icon className="h-6 w-6" aria-hidden />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold text-fg">{p.title}</h3>
+                    <p className="text-muted leading-relaxed">{p.body}</p>
+                  </Card>
+                </Reveal>
+              )
+            })}
+          </div>
+        </Section>
+      </Reveal>
 
       {/* 4. Ödüller — arzu yarat, katılma motivasyonunu zirveye çıkar */}
-      <Section title={homePrizesSection.title} lead={homePrizesSection.lead} className="border-t border-border bg-bg-muted/40 dark:bg-surface-900/25">
-        <PrizeShowcase mode="home" />
-      </Section>
+      <Reveal>
+        <Section title={homePrizesSection.title} lead={homePrizesSection.lead} className="border-t border-border bg-bg-muted/40 dark:bg-surface-900/25">
+          <PrizeShowcase mode="home" />
+        </Section>
+      </Reveal>
 
       {/* 5. Video intro bölümüne taşındı */}
 
       {/* 6. Geri sayım + başvuru CTA — aciliyet ve harekete geçiş */}
-      <section className="border-b border-border bg-bg-muted/30 py-12 dark:bg-surface-900/35 sm:py-16">
+      <Reveal as="section" className="border-b border-border bg-bg-muted/30 py-12 dark:bg-surface-900/35 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Countdown deadlineIso={applicationDeadlineIso} />
           <div className="mt-6 flex justify-center">
             <LinkButton to="/basvuru">Başvuruya git</LinkButton>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* 7. Duyurular — merak uyandırılmış kullanıcı güncel bilgiyi okur */}
-      <HomeAnnouncements />
+      <Reveal>
+        <HomeAnnouncements />
+      </Reveal>
 
       {/* 8. Kapanış CTA — son soru işaretlerini gider */}
-      <section className="border-t border-border bg-gradient-to-br from-bg-muted to-bg py-16 dark:from-surface-900 dark:to-surface-950 sm:py-20">
+      <Reveal as="section" className="border-t border-border bg-gradient-to-br from-bg-muted to-bg py-16 dark:from-surface-900 dark:to-surface-950 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
           <h2 className="font-display text-2xl font-semibold text-fg sm:text-3xl">{ctaBand.title}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted">{ctaBand.text}</p>
@@ -139,7 +150,7 @@ export function HomePage() {
             <LinkButton to="/iletisim">İletişime geç</LinkButton>
           </div>
         </div>
-      </section>
+      </Reveal>
     </>
   )
 }

@@ -2,6 +2,7 @@ import { clsx } from 'clsx'
 import { ChevronRight, Medal } from 'lucide-react'
 import { evaluationPage } from '../content/siteContent'
 import { LinkButton } from './Button'
+import { Reveal } from './Reveal'
 
 const tierStyles = [
   'border-amber-500/40 bg-gradient-to-br from-amber-500/[0.14] via-transparent to-transparent shadow-amber-500/5 dark:from-amber-500/[0.08]',
@@ -21,30 +22,31 @@ export function PrizeShowcase({ mode }: { mode: 'page' | 'home' }) {
   const grid = (
     <div className="grid gap-4 sm:grid-cols-3">
       {rows.map((r, i) => (
-        <div
-          key={r.rank}
-          className={clsx(
-            'relative flex flex-col rounded-2xl border p-5 transition-shadow hover:shadow-md dark:hover:shadow-black/30',
-            tierStyles[i] ?? tierStyles[2],
-          )}
-        >
-          <div className="flex items-start justify-between gap-3">
-            <span
-              className={clsx(
-                'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-bg-elevated/80 dark:bg-surface-900/80',
-                medalClass[i] ?? medalClass[2],
-              )}
-            >
-              <Medal className="h-5 w-5" aria-hidden />
-            </span>
-            <span className="rounded-full bg-bg-muted px-2.5 py-0.5 text-xs font-semibold tabular-nums text-muted dark:bg-surface-800">
-              {i + 1}. sıra
-            </span>
+        <Reveal key={r.rank} staggerStep={Math.min(i, 3)} className="h-full">
+          <div
+            className={clsx(
+              'relative flex h-full flex-col rounded-2xl border p-5 transition-shadow hover:shadow-md dark:hover:shadow-black/30',
+              tierStyles[i] ?? tierStyles[2],
+            )}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <span
+                className={clsx(
+                  'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-bg-elevated/80 dark:bg-surface-900/80',
+                  medalClass[i] ?? medalClass[2],
+                )}
+              >
+                <Medal className="h-5 w-5" aria-hidden />
+              </span>
+              <span className="rounded-full bg-bg-muted px-2.5 py-0.5 text-xs font-semibold tabular-nums text-muted dark:bg-surface-800">
+                {i + 1}. sıra
+              </span>
+            </div>
+            <p className="mt-4 font-display text-sm font-semibold text-fg">{r.rank}</p>
+            <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-accent-600 dark:text-accent-400">{r.amount}</p>
+            <p className="mt-2 text-xs leading-relaxed text-fg-muted">Kişi başı hediye çeki</p>
           </div>
-          <p className="mt-4 font-display text-sm font-semibold text-fg">{r.rank}</p>
-          <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight text-accent-600 dark:text-accent-400">{r.amount}</p>
-          <p className="mt-2 text-xs leading-relaxed text-fg-muted">Kişi başı hediye çeki</p>
-        </div>
+        </Reveal>
       ))}
     </div>
   )

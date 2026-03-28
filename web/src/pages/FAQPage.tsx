@@ -2,6 +2,7 @@ import { faqItems } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { FAQList } from '../components/FAQ'
+import { Reveal } from '../components/Reveal'
 
 export function FAQPage() {
   usePageTitle('SSS')
@@ -9,9 +10,9 @@ export function FAQPage() {
   return (
     <>
       <PageHero title="Sıkça sorulan sorular" subtitle="Lojistik ve etkinlik kuralları hakkında özet yanıtlar." />
-      <div className="w-full px-0 py-12 sm:py-16">
+      <Reveal className="w-full px-0 py-12 sm:py-16">
         <FAQList items={faqItems} />
-      </div>
+      </Reveal>
     </>
   )
 }

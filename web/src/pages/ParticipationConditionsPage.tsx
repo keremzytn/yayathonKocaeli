@@ -4,6 +4,7 @@ import { PageHero } from '../components/PageHero'
 import { Section } from '../components/Section'
 import { Card } from '../components/Card'
 import { GraduationCap, Layers, Users } from 'lucide-react'
+import { Reveal } from '../components/Reveal'
 
 export function ParticipationConditionsPage() {
   usePageTitle('Katılım koşulları')
@@ -35,21 +36,25 @@ export function ParticipationConditionsPage() {
           </div>
         </div>
       </PageHero>
-      <Section title={participatePage.eligibility.title}>
-        <div className="grid gap-4 md:grid-cols-3">
-          {participatePage.eligibility.items.map((x, idx) => (
-            <Card key={x}>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{`Kriter ${(idx + 1).toString().padStart(2, '0')}`}</p>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{x}</p>
-            </Card>
-          ))}
-        </div>
-      </Section>
-      <Section title={participatePage.teamModel.title} className="bg-bg-muted/60 dark:bg-surface-900/30">
-        <Card>
-          <p className="max-w-3xl leading-relaxed text-fg-muted">{participatePage.teamModel.p}</p>
-        </Card>
-      </Section>
+      <Reveal>
+        <Section title={participatePage.eligibility.title}>
+          <div className="grid gap-4 md:grid-cols-3">
+            {participatePage.eligibility.items.map((x, idx) => (
+              <Card key={x}>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted">{`Kriter ${(idx + 1).toString().padStart(2, '0')}`}</p>
+                <p className="mt-2 text-sm leading-relaxed text-fg-muted">{x}</p>
+              </Card>
+            ))}
+          </div>
+        </Section>
+      </Reveal>
+      <Reveal>
+        <Section title={participatePage.teamModel.title} className="bg-bg-muted/60 dark:bg-surface-900/30">
+          <Card>
+            <p className="max-w-3xl leading-relaxed text-fg-muted">{participatePage.teamModel.p}</p>
+          </Card>
+        </Section>
+      </Reveal>
       <div className="pb-16" />
     </>
   )

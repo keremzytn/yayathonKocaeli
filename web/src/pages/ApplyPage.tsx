@@ -371,7 +371,11 @@ export function ApplyPage() {
 
   return (
     <>
-      <PageHero title="Başvuru" subtitle="Bireysel başvuru ile katılın; takım ataması komite tarafından yapılır." />
+      <PageHero
+        title="Başvuru"
+        subtitle="Bireysel başvuru ile katılın; takım ataması komite tarafından yapılır."
+        animateEntry={false}
+      />
       <div className="w-full px-0 py-8 sm:py-12">
         <Countdown deadlineIso={applicationDeadlineIso} />
         <Card className="mt-6">

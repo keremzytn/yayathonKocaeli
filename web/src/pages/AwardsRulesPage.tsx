@@ -8,6 +8,7 @@ import { primaryButtonClassName } from '../components/buttonStyles'
 import { Section } from '../components/Section'
 import { PrizeShowcase } from '../components/PrizeShowcase'
 import { BadgeCheck, Gavel, Trophy } from 'lucide-react'
+import { Reveal } from '../components/Reveal'
 
 export function AwardsRulesPage() {
   usePageTitle('Ödüller ve kurallar')
@@ -40,71 +41,81 @@ export function AwardsRulesPage() {
         </div>
       </PageHero>
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-12 sm:px-6 sm:py-16">
-        <Card>
-          <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.jury.title}</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-fg-muted">
-            {evaluationPage.jury.items.map((x) => (
-              <li key={x}>{x}</li>
-            ))}
-          </ul>
-        </Card>
-        <Card>
-          <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.weights.title}</h2>
-          <ul className="mt-4 space-y-3">
-            {evaluationPage.weights.items.map((w) => (
-              <li
-                key={w.label}
-                className="flex items-center justify-between gap-4 border-b border-border/60 pb-3 last:border-0"
-              >
-                <span className="text-fg-muted">{w.label}</span>
-                <span className="font-mono text-accent-600 dark:text-accent-400">%{w.percent}</span>
-              </li>
-            ))}
-          </ul>
-        </Card>
-        <Card>
-          <PrizeShowcase mode="page" />
-        </Card>
-      </div>
-      <Section title="Beklentiler ve tasarım ilkeleri" lead="Projelerinizde dikkate almanız beklenen özet ilkeler.">
-        <div className="grid gap-6 md:grid-cols-2">
-          {designPage.focus.items.map((item) => (
-            <Card key={item.h}>
-              <h3 className="font-display text-base font-semibold text-accent-600 dark:text-accent-400">{item.h}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{item.p}</p>
-            </Card>
-          ))}
-        </div>
-      </Section>
-      <Section title={resourcesPage.title} lead={resourcesPage.intro} className="bg-bg-muted/60 dark:bg-surface-900/30">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {resourcesPage.assets.map((a) => (
-            <Card key={a.filename} className="flex flex-col">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="font-display text-base font-semibold text-fg">{a.title}</h3>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-muted">{a.description}</p>
-                </div>
-                <span className="rounded-lg bg-bg-muted p-2 text-accent-600 dark:bg-surface-800 dark:text-accent-400">
-                  <Download className="h-5 w-5" aria-hidden />
-                </span>
-              </div>
-              <p className="mt-3 text-xs text-fg-muted">{a.filename}</p>
-              {a.available ? (
-                <a
-                  href={`/downloads/${a.filename}`}
-                  className={clsx(primaryButtonClassName, 'mt-4')}
-                  download
+        <Reveal>
+          <Card>
+            <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.jury.title}</h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-fg-muted">
+              {evaluationPage.jury.items.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+          </Card>
+        </Reveal>
+        <Reveal>
+          <Card>
+            <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.weights.title}</h2>
+            <ul className="mt-4 space-y-3">
+              {evaluationPage.weights.items.map((w) => (
+                <li
+                  key={w.label}
+                  className="flex items-center justify-between gap-4 border-b border-border/60 pb-3 last:border-0"
                 >
-                  İndir
-                </a>
-              ) : (
-                <p className="mt-4 text-sm text-muted">Yakında — dosya eklendiğinde indirme aktif olacak.</p>
-              )}
-            </Card>
-          ))}
-        </div>
-      </Section>
+                  <span className="text-fg-muted">{w.label}</span>
+                  <span className="font-mono text-accent-600 dark:text-accent-400">%{w.percent}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </Reveal>
+        <Reveal>
+          <Card>
+            <PrizeShowcase mode="page" />
+          </Card>
+        </Reveal>
+      </div>
+      <Reveal>
+        <Section title="Beklentiler ve tasarım ilkeleri" lead="Projelerinizde dikkate almanız beklenen özet ilkeler.">
+          <div className="grid gap-6 md:grid-cols-2">
+            {designPage.focus.items.map((item) => (
+              <Card key={item.h}>
+                <h3 className="font-display text-base font-semibold text-accent-600 dark:text-accent-400">{item.h}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-fg-muted">{item.p}</p>
+              </Card>
+            ))}
+          </div>
+        </Section>
+      </Reveal>
+      <Reveal>
+        <Section title={resourcesPage.title} lead={resourcesPage.intro} className="bg-bg-muted/60 dark:bg-surface-900/30">
+          <div className="grid gap-6 sm:grid-cols-2">
+            {resourcesPage.assets.map((a) => (
+              <Card key={a.filename} className="flex flex-col">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="font-display text-base font-semibold text-fg">{a.title}</h3>
+                    <p className="mt-1 text-xs uppercase tracking-wide text-muted">{a.description}</p>
+                  </div>
+                  <span className="rounded-lg bg-bg-muted p-2 text-accent-600 dark:bg-surface-800 dark:text-accent-400">
+                    <Download className="h-5 w-5" aria-hidden />
+                  </span>
+                </div>
+                <p className="mt-3 text-xs text-fg-muted">{a.filename}</p>
+                {a.available ? (
+                  <a
+                    href={`/downloads/${a.filename}`}
+                    className={clsx(primaryButtonClassName, 'mt-4')}
+                    download
+                  >
+                    İndir
+                  </a>
+                ) : (
+                  <p className="mt-4 text-sm text-muted">Yakında — dosya eklendiğinde indirme aktif olacak.</p>
+                )}
+              </Card>
+            ))}
+          </div>
+        </Section>
+      </Reveal>
     </>
   )
 }

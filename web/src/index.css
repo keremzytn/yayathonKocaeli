@@ -17,6 +17,8 @@
   --ui-hero-to: #f8fafc;
   --ui-hero-accent: rgba(52, 194, 97, 0.12);
   --ui-focus-ring: #2a7abf;
+  --ui-reveal-duration: 500ms;
+  --ui-reveal-stagger: 75ms;
 }
 
 html.dark {
@@ -33,6 +35,8 @@ html.dark {
   --ui-hero-from: rgb(17 24 39 / 0.9);
   --ui-hero-to: #0b1220;
   --ui-hero-accent: rgba(52, 194, 97, 0.25);
+  --ui-reveal-duration: 500ms;
+  --ui-reveal-stagger: 75ms;
 }
 
 @theme {
@@ -80,4 +84,69 @@ body {
 :focus-visible {
   outline: 2px solid var(--ui-focus-ring);
   outline-offset: 2px;
+}
+
+/* Reveal: sistem tercihi ile çift koruma (hook + CSS) */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-target {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+@keyframes ui-loading-footprint {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.88);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ui-loading-footprint {
+  animation: ui-loading-footprint 1.15s ease-in-out infinite;
+}
+
+@keyframes ui-loading-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.ui-loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--ui-bg-muted) 0%,
+    var(--ui-bg-elevated) 42%,
+    var(--ui-accent-line, rgb(52 194 97 / 0.22)) 50%,
+    var(--ui-bg-elevated) 58%,
+    var(--ui-bg-muted) 100%
+  );
+  background-size: 220% 100%;
+  animation: ui-loading-shimmer 2s ease-in-out infinite;
+}
+
+html.dark .ui-loading-shimmer {
+  --ui-accent-line: rgb(52 194 97 / 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-loading-footprint {
+    animation: none;
+    opacity: 0.85;
+    transform: none;
+  }
+
+  .ui-loading-shimmer {
+    animation: none;
+    background: var(--ui-bg-muted);
+  }
 }

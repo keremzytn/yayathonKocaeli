@@ -8,6 +8,7 @@ import { Card } from '../components/Card'
 import { Button } from '../components/Button'
 import { submitContact } from '../lib/api'
 import { clsx } from 'clsx'
+import { Reveal } from '../components/Reveal'
 
 function isValidEmail(s: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s)
@@ -66,28 +67,30 @@ export function ContactPage() {
     <>
       <PageHero title={contactPage.title} subtitle="Teknik sorular ve duyurular için kanallar." />
       <div className="mx-auto max-w-6xl space-y-10 px-4 py-12 sm:px-6 sm:py-16">
-        <div className="grid gap-6 md:grid-cols-3">
-          {contactPage.channels.map((c) => (
-            <Card key={c.name} className="flex flex-col">
-              <div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400">
-                  {c.name === 'E-posta' ? <Mail className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
+        <Reveal>
+          <div className="grid gap-6 md:grid-cols-3">
+            {contactPage.channels.map((c) => (
+              <Card key={c.name} className="flex flex-col">
+                <div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400">
+                    {c.name === 'E-posta' ? <Mail className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
+                  </div>
+                  <h3 className="mt-4 font-display text-base font-semibold text-fg">{c.name}</h3>
+                  {c.href ? (
+                    <a
+                      href={c.href}
+                      className="mt-2 text-sm text-accent-600 no-underline hover:underline dark:text-accent-400"
+                    >
+                      {c.detail}
+                    </a>
+                  ) : (
+                    <p className="mt-2 text-sm text-muted leading-relaxed">{c.detail}</p>
+                  )}
                 </div>
-                <h3 className="mt-4 font-display text-base font-semibold text-fg">{c.name}</h3>
-                {c.href ? (
-                  <a
-                    href={c.href}
-                    className="mt-2 text-sm text-accent-600 no-underline hover:underline dark:text-accent-400"
-                  >
-                    {c.detail}
-                  </a>
-                ) : (
-                  <p className="mt-2 text-sm text-muted leading-relaxed">{c.detail}</p>
-                )}
-              </div>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
+        </Reveal>
 
         <Card>
           <div>

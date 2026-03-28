@@ -5,6 +5,7 @@ import { Card } from '../components/Card'
 import { Section } from '../components/Section'
 import { Carousel } from '../components/Carousel'
 import { Compass, Lightbulb, Route } from 'lucide-react'
+import { Reveal } from '../components/Reveal'
 
 export function EventProcessPage() {
   usePageTitle('Etkinlik süreci')
@@ -36,7 +37,7 @@ export function EventProcessPage() {
           </div>
         </div>
       </PageHero>
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <Reveal as="section" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="mb-8 flex items-end justify-between gap-4 border-b border-border pb-4">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-fg sm:text-3xl">Metodoloji Adımları</h2>
           <p className="text-xs uppercase tracking-[0.14em] text-muted">Süreç Özeti</p>
@@ -59,22 +60,26 @@ export function EventProcessPage() {
             </Card>
           ))}
         </div>
-      </section>
-      <Section title="Tasarım çerçevesi">
-        <Card>
-          <p className="text-sm leading-relaxed text-fg-muted">{designPage.intro}</p>
-          <p className="mt-4 text-sm text-muted">
-            Tasarım ilkeleri ve beklentilerin özeti «Ödüller ve kurallar» sayfasındadır.
-          </p>
-        </Card>
-      </Section>
-      <Section
-        title={designPage.gallery.title}
-        lead={designPage.gallery.caption}
-        className="border-t border-border bg-gradient-to-b from-bg-muted/40 via-bg-muted/50 to-bg-muted/70 dark:from-surface-900/40 dark:via-surface-900/35 dark:to-surface-950/50"
-      >
-        <Carousel images={designPage.gallery.images} title={designPage.gallery.caption} />
-      </Section>
+      </Reveal>
+      <Reveal>
+        <Section title="Tasarım çerçevesi">
+          <Card>
+            <p className="text-sm leading-relaxed text-fg-muted">{designPage.intro}</p>
+            <p className="mt-4 text-sm text-muted">
+              Tasarım ilkeleri ve beklentilerin özeti «Ödüller ve kurallar» sayfasındadır.
+            </p>
+          </Card>
+        </Section>
+      </Reveal>
+      <Reveal>
+        <Section
+          title={designPage.gallery.title}
+          lead={designPage.gallery.caption}
+          className="border-t border-border bg-gradient-to-b from-bg-muted/40 via-bg-muted/50 to-bg-muted/70 dark:from-surface-900/40 dark:via-surface-900/35 dark:to-surface-950/50"
+        >
+          <Carousel images={designPage.gallery.images} title={designPage.gallery.caption} />
+        </Section>
+      </Reveal>
     </>
   )
 }
