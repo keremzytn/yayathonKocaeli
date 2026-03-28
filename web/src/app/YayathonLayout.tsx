@@ -11,8 +11,8 @@ export function YayathonLayout() {
           <Outlet />
         </section>
       ) : (
-        <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-          <aside className="self-start lg:sticky lg:top-[72px]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(280px,300px)_1fr]">
+          <aside className="self-start lg:sticky lg:top-[72px] lg:z-10">
             <YayathonSidebar />
           </aside>
           <section className="min-w-0">
