@@ -40,20 +40,15 @@ export function AwardsRulesPage() {
         </div>
       </PageHero>
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-12 sm:px-6 sm:py-16">
-        <Card className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-          <div className="pl-2">
+        <Card>
           <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.jury.title}</h2>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-fg-muted">
             {evaluationPage.jury.items.map((x) => (
               <li key={x}>{x}</li>
             ))}
           </ul>
-          </div>
         </Card>
-        <Card className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-          <div className="pl-2">
+        <Card>
           <h2 className="font-display text-lg font-semibold text-fg">{evaluationPage.weights.title}</h2>
           <ul className="mt-4 space-y-3">
             {evaluationPage.weights.items.map((w) => (
@@ -66,13 +61,9 @@ export function AwardsRulesPage() {
               </li>
             ))}
           </ul>
-          </div>
         </Card>
-        <Card className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-          <div className="pl-2">
-            <PrizeShowcase mode="page" />
-          </div>
+        <Card>
+          <PrizeShowcase mode="page" />
         </Card>
       </div>
       <Section title="Beklentiler ve tasarım ilkeleri" lead="Projelerinizde dikkate almanız beklenen özet ilkeler.">

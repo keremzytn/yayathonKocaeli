@@ -22,7 +22,7 @@ export function Carousel({ images, title }: { images: { src: string; alt: string
   if (n === 0) return null
 
   const navBtn =
-    'absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 text-white shadow-lg backdrop-blur-md transition hover:border-white/25 hover:bg-black/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black/20 sm:h-12 sm:w-12'
+    'absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/45 text-white shadow-lg backdrop-blur-md transition hover:border-white/25 hover:bg-black/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-black/20 sm:h-12 sm:w-12'
 
   return (
     <figure className="mx-auto max-w-5xl">
@@ -32,7 +32,7 @@ export function Carousel({ images, title }: { images: { src: string; alt: string
         aria-label={title}
         tabIndex={0}
         onKeyDown={onKeyDown}
-        className="group/carousel overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18)] ring-1 ring-black/[0.04] outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 dark:bg-surface-900 dark:shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55)] dark:ring-white/[0.06]"
+        className="group/carousel overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18)] ring-1 ring-black/[0.04] outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 dark:bg-surface-900 dark:shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55)] dark:ring-white/[0.06]"
       >
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-grid-bg md:aspect-[2/1]">
           {images.map((im, idx) => (
@@ -80,7 +80,7 @@ export function Carousel({ images, title }: { images: { src: string; alt: string
               className={clsx(
                 'relative aspect-[4/3] min-h-0 flex-1 overflow-hidden rounded-xl transition-all duration-300 sm:max-h-[4.5rem]',
                 idx === i
-                  ? 'ring-2 ring-accent-500 ring-offset-2 ring-offset-bg dark:ring-accent-400 dark:ring-offset-surface-950'
+                  ? 'ring-2 ring-accent-600 ring-offset-2 ring-offset-bg dark:ring-accent-600 dark:ring-offset-surface-950'
                   : 'opacity-55 ring-1 ring-transparent hover:opacity-90 hover:ring-border',
               )}
             >

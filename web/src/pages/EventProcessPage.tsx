@@ -43,9 +43,8 @@ export function EventProcessPage() {
         </div>
         <div className="space-y-4">
           {methodologyPage.sections.map((block, idx) => (
-            <Card key={block.h} className="relative overflow-hidden">
-              <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-              <div className="pl-2">
+            <Card key={block.h}>
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted">{`Adım ${(idx + 1).toString().padStart(2, '0')}`}</p>
                 <h3 className="mt-2 font-display text-lg font-semibold text-fg">{block.h}</h3>
                 {'p' in block && block.p ? <p className="mt-3 text-sm leading-relaxed text-fg-muted">{block.p}</p> : null}
@@ -72,7 +71,7 @@ export function EventProcessPage() {
       <Section
         title={designPage.gallery.title}
         lead={designPage.gallery.caption}
-        className="border-t border-accent-500/15 bg-gradient-to-b from-accent-500/[0.05] via-bg-muted/50 to-bg-muted/70 dark:from-accent-500/[0.08] dark:via-surface-900/35 dark:to-surface-950/50"
+        className="border-t border-border bg-gradient-to-b from-bg-muted/40 via-bg-muted/50 to-bg-muted/70 dark:from-surface-900/40 dark:via-surface-900/35 dark:to-surface-950/50"
       >
         <Carousel images={designPage.gallery.images} title={designPage.gallery.caption} />
       </Section>

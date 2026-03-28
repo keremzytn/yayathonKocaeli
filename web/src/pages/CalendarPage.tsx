@@ -71,9 +71,8 @@ export function CalendarPage() {
       </Section>
 
       <Section title={scheduleFieldDay.title}>
-        <Card className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-          <div className="pl-2">
+        <Card>
+          <div>
             <p className="text-sm font-medium text-accent-600 dark:text-accent-400">{scheduleFieldDay.location}</p>
             {scheduleFieldDay.paragraphs.map((p) => (
               <p key={p} className="mt-3 leading-relaxed text-fg-muted">

@@ -9,10 +9,8 @@ export function ContactVenueMap() {
     : null
 
   return (
-    <Card className="relative overflow-hidden p-0 shadow-md dark:shadow-xl dark:shadow-black/25">
-      <div className="absolute left-0 top-0 z-10 h-full w-1 bg-accent-500/55" aria-hidden />
-
-      <div className="pl-3 sm:pl-4">
+    <Card className="overflow-hidden p-0 shadow-md dark:shadow-xl dark:shadow-black/25">
+      <div>
         <div className="flex flex-wrap items-start gap-3 px-5 pb-2 pt-6 sm:px-8 sm:pt-8">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-500/15 text-accent-600 dark:text-accent-400">
             <MapPin className="h-5 w-5" aria-hidden />

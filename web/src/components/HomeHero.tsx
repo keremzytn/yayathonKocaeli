@@ -46,13 +46,13 @@ export function HomeHero({
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
                 <Link
                   to="/yarismaci-kunyesi"
-                  className="inline-flex items-center justify-center rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-accent-900/10 transition hover:bg-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                  className="inline-flex items-center justify-center rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-accent-900/10 transition hover:bg-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                 >
                   Yarışma künyesi
                 </Link>
                 <Link
                   to="/basvuru"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/25 bg-black/20 px-4 py-2.5 text-sm font-semibold text-white/95 backdrop-blur transition hover:bg-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                  className="inline-flex items-center justify-center rounded-xl border border-white/25 bg-black/20 px-4 py-2.5 text-sm font-semibold text-white/95 backdrop-blur transition hover:bg-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                 >
                   Başvuru
                 </Link>

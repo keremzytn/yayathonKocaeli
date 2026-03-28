@@ -159,7 +159,7 @@ export function ApplyPage() {
 
   function renderField(f: FormField) {
     const err = errors[f.name]
-    const common = err ? 'border-red-500/60 focus-visible:ring-red-400' : 'border-border focus-visible:ring-accent-400'
+    const common = err ? 'border-red-500/60 focus-visible:ring-red-400' : 'border-border focus-visible:ring-accent-600'
 
     if (f.type === 'text' || f.type === 'email' || f.type === 'tel') {
       return (
@@ -231,7 +231,7 @@ export function ApplyPage() {
                   value={o.value}
                   checked={v === o.value}
                   onChange={() => setField(f.name, o.value)}
-                  className="border-border text-accent-500 focus-visible:ring-accent-400"
+                  className="border-border text-accent-500 focus-visible:ring-accent-600"
                 />
                 {o.label}
               </label>
@@ -257,7 +257,7 @@ export function ApplyPage() {
                     const next = arr.includes(o.value) ? arr.filter((x) => x !== o.value) : [...arr, o.value]
                     setField(f.name, next)
                   }}
-                  className="rounded border-border text-accent-500 focus-visible:ring-accent-400"
+                  className="rounded border-border text-accent-500 focus-visible:ring-accent-600"
                 />
                 {o.label}
               </label>

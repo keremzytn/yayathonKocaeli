@@ -43,9 +43,8 @@ export function CompetitionCreditsPage() {
 
         <div className="space-y-4">
           {aboutPage.sections.map((s, idx) => (
-            <Card key={s.h} className="relative overflow-hidden">
-              <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-              <div className="flex items-start gap-4 pl-2">
+            <Card key={s.h}>
+              <div className="flex items-start gap-4">
                 <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-bg-muted text-sm font-semibold text-fg dark:bg-surface-800">
                   {(idx + 1).toString().padStart(2, '0')}
                 </span>

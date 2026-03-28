@@ -38,10 +38,9 @@ export function ParticipationConditionsPage() {
       <Section title={participatePage.eligibility.title}>
         <div className="grid gap-4 md:grid-cols-3">
           {participatePage.eligibility.items.map((x, idx) => (
-            <Card key={x} className="relative overflow-hidden">
-              <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-              <p className="pl-2 text-xs font-semibold uppercase tracking-wide text-muted">{`Kriter ${(idx + 1).toString().padStart(2, '0')}`}</p>
-              <p className="mt-2 pl-2 text-sm leading-relaxed text-fg-muted">{x}</p>
+            <Card key={x}>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{`Kriter ${(idx + 1).toString().padStart(2, '0')}`}</p>
+              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{x}</p>
             </Card>
           ))}
         </div>

@@ -59,7 +59,7 @@ export function ContactPage() {
   const inputCls = (field: string) =>
     clsx(
       'mt-2 w-full rounded-lg border bg-bg-elevated px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus-visible:outline-none focus-visible:ring-2 dark:bg-surface-950/80',
-      errors[field] ? 'border-red-500/60 focus-visible:ring-red-400' : 'border-border focus-visible:ring-accent-400',
+      errors[field] ? 'border-red-500/60 focus-visible:ring-red-400' : 'border-border focus-visible:ring-accent-600',
     )
 
   return (
@@ -68,9 +68,8 @@ export function ContactPage() {
       <div className="mx-auto max-w-6xl space-y-10 px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-6 md:grid-cols-3">
           {contactPage.channels.map((c) => (
-            <Card key={c.name} className="relative flex flex-col overflow-hidden">
-              <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-              <div className="pl-2">
+            <Card key={c.name} className="flex flex-col">
+              <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/15 text-accent-600 dark:text-accent-400">
                   {c.name === 'E-posta' ? <Mail className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
                 </div>
@@ -90,9 +89,8 @@ export function ContactPage() {
           ))}
         </div>
 
-        <Card className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
-          <div className="pl-2">
+        <Card>
+          <div>
             <div className="flex items-center gap-2">
               <Send className="h-5 w-5 text-accent-600 dark:text-accent-400" aria-hidden />
               <h2 className="font-display text-lg font-semibold text-fg">Bize yazın</h2>
