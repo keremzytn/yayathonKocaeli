@@ -23,6 +23,8 @@ export function Header() {
   const location = useLocation()
 
   useEffect(() => {
+    // Rota değişince mobil menüyü kapat (geri/ileri ve programatik geçişler)
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- pathname değişimine bağlı tek senkron davranış
     setMobileOpen(false)
   }, [location.pathname])
 

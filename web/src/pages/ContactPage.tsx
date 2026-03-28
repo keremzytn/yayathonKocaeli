@@ -100,7 +100,9 @@ export function ContactPage() {
             </p>
 
             {status === 'ok' ? (
-              <p className="mt-6 text-sm text-green-600 dark:text-green-400">Mesajınız alındı (simülasyon). Teşekkürler!</p>
+              <p role="status" aria-live="polite" className="mt-6 text-sm text-green-600 dark:text-green-400">
+                Mesajınız alındı (simülasyon). Teşekkürler!
+              </p>
             ) : (
               <form onSubmit={onSubmit} className="mt-6 space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
@@ -122,9 +124,15 @@ export function ContactPage() {
                           return n
                         })
                       }}
+                      aria-invalid={errors.name ? true : undefined}
+                      aria-describedby={errors.name ? 'contact-name-err' : undefined}
                       className={inputCls('name')}
                     />
-                    {errors.name ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.name}</p> : null}
+                    {errors.name ? (
+                      <p id="contact-name-err" className="mt-1 text-xs text-red-500 dark:text-red-400">
+                        {errors.name}
+                      </p>
+                    ) : null}
                   </div>
                   <div>
                     <label htmlFor="contact-email" className="block text-sm font-medium text-fg">
@@ -144,9 +152,15 @@ export function ContactPage() {
                           return n
                         })
                       }}
+                      aria-invalid={errors.email ? true : undefined}
+                      aria-describedby={errors.email ? 'contact-email-err' : undefined}
                       className={inputCls('email')}
                     />
-                    {errors.email ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.email}</p> : null}
+                    {errors.email ? (
+                      <p id="contact-email-err" className="mt-1 text-xs text-red-500 dark:text-red-400">
+                        {errors.email}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
                 <div>
@@ -168,9 +182,15 @@ export function ContactPage() {
                       })
                     }}
                     placeholder="Örn. Başvuru, teknik destek…"
+                    aria-invalid={errors.subject ? true : undefined}
+                    aria-describedby={errors.subject ? 'contact-subject-err' : undefined}
                     className={inputCls('subject')}
                   />
-                  {errors.subject ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.subject}</p> : null}
+                  {errors.subject ? (
+                    <p id="contact-subject-err" className="mt-1 text-xs text-red-500 dark:text-red-400">
+                      {errors.subject}
+                    </p>
+                  ) : null}
                 </div>
                 <div>
                   <label htmlFor="contact-message" className="block text-sm font-medium text-fg">
@@ -190,12 +210,20 @@ export function ContactPage() {
                       })
                     }}
                     placeholder="Mesajınızı yazın…"
+                    aria-invalid={errors.message ? true : undefined}
+                    aria-describedby={errors.message ? 'contact-message-err' : undefined}
                     className={inputCls('message')}
                   />
-                  {errors.message ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{errors.message}</p> : null}
+                  {errors.message ? (
+                    <p id="contact-message-err" className="mt-1 text-xs text-red-500 dark:text-red-400">
+                      {errors.message}
+                    </p>
+                  ) : null}
                 </div>
                 {status === 'err' ? (
-                  <p className="text-sm text-red-500 dark:text-red-400">Gönderim başarısız. Lütfen daha sonra tekrar deneyin.</p>
+                  <p role="alert" className="text-sm text-red-500 dark:text-red-400">
+                    Gönderim başarısız. Lütfen daha sonra tekrar deneyin.
+                  </p>
                 ) : null}
                 <Button type="submit" disabled={status === 'sending'}>
                   {status === 'sending' ? 'Gönderiliyor…' : 'Mesajı gönder (demo)'}

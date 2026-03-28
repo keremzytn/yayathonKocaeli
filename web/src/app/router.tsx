@@ -1,21 +1,31 @@
+/* eslint-disable react-refresh/only-export-components -- lazy sayfa yüklemeleri + router dışa aktarımı */
+import { lazy } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { RootLayout } from './RootLayout'
 import { YayathonLayout } from './YayathonLayout'
-import { HomePage } from '../pages/HomePage'
-import { CompetitionCreditsPage } from '../pages/CompetitionCreditsPage'
-import { EventProcessPage } from '../pages/EventProcessPage'
-import { ParticipationConditionsPage } from '../pages/ParticipationConditionsPage'
-import { AwardsRulesPage } from '../pages/AwardsRulesPage'
-import { CalendarPage } from '../pages/CalendarPage'
-import { ApplyPage } from '../pages/ApplyPage'
-import { FAQPage } from '../pages/FAQPage'
-import { ContactPage } from '../pages/ContactPage'
-import { AnnouncementsPage } from '../pages/AnnouncementsPage'
+import { RouteError } from './RouteError'
+
+const HomePage = lazy(() => import('../pages/HomePage').then((m) => ({ default: m.HomePage })))
+const CompetitionCreditsPage = lazy(() =>
+  import('../pages/CompetitionCreditsPage').then((m) => ({ default: m.CompetitionCreditsPage })),
+)
+const EventProcessPage = lazy(() => import('../pages/EventProcessPage').then((m) => ({ default: m.EventProcessPage })))
+const ParticipationConditionsPage = lazy(() =>
+  import('../pages/ParticipationConditionsPage').then((m) => ({ default: m.ParticipationConditionsPage })),
+)
+const AwardsRulesPage = lazy(() => import('../pages/AwardsRulesPage').then((m) => ({ default: m.AwardsRulesPage })))
+const CalendarPage = lazy(() => import('../pages/CalendarPage').then((m) => ({ default: m.CalendarPage })))
+const ApplyPage = lazy(() => import('../pages/ApplyPage').then((m) => ({ default: m.ApplyPage })))
+const FAQPage = lazy(() => import('../pages/FAQPage').then((m) => ({ default: m.FAQPage })))
+const ContactPage = lazy(() => import('../pages/ContactPage').then((m) => ({ default: m.ContactPage })))
+const AnnouncementsPage = lazy(() => import('../pages/AnnouncementsPage').then((m) => ({ default: m.AnnouncementsPage })))
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })))
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <RouteError />,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -39,6 +49,7 @@ export const router = createBrowserRouter([
           { path: 'kaynaklar', element: <Navigate to="/oduller-ve-kurallar" replace /> },
         ],
       },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ])

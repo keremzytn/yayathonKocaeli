@@ -15,6 +15,10 @@ function fieldId(name: string) {
   return `field-${name}`
 }
 
+function fieldErrId(name: string) {
+  return `${fieldId(name)}-err`
+}
+
 type StepConfig = { title: string; subtitle: string; fieldNames: readonly string[] }
 
 const FORM_STEPS: StepConfig[] = [
@@ -176,12 +180,18 @@ export function ApplyPage() {
             value={String(values[f.name] ?? '')}
             onChange={(e) => setField(f.name, e.target.value)}
             placeholder={f.placeholder}
+            aria-invalid={err ? true : undefined}
+            aria-describedby={err ? fieldErrId(f.name) : undefined}
             className={clsx(
               'mt-2 w-full rounded-lg border bg-bg-elevated px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus-visible:outline-none focus-visible:ring-2 dark:bg-surface-950/80',
               common,
             )}
           />
-          {err ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{err}</p> : null}
+          {err ? (
+            <p id={fieldErrId(f.name)} className="mt-1 text-xs text-red-500 dark:text-red-400">
+              {err}
+            </p>
+          ) : null}
         </div>
       )
     }
@@ -198,6 +208,8 @@ export function ApplyPage() {
             name={f.name}
             value={String(values[f.name] ?? '')}
             onChange={(e) => setField(f.name, e.target.value)}
+            aria-invalid={err ? true : undefined}
+            aria-describedby={err ? fieldErrId(f.name) : undefined}
             className={clsx(
               'mt-2 w-full rounded-lg border bg-bg-elevated px-3 py-2 text-sm text-fg focus-visible:outline-none focus-visible:ring-2 dark:bg-surface-950/80',
               common,
@@ -209,7 +221,11 @@ export function ApplyPage() {
               </option>
             ))}
           </select>
-          {err ? <p className="mt-1 text-xs text-red-500 dark:text-red-400">{err}</p> : null}
+          {err ? (
+            <p id={fieldErrId(f.name)} className="mt-1 text-xs text-red-500 dark:text-red-400">
+              {err}
+            </p>
+          ) : null}
         </div>
       )
     }
@@ -217,7 +233,12 @@ export function ApplyPage() {
     if (f.type === 'radio') {
       const v = String(values[f.name] ?? '')
       return (
-        <fieldset key={f.name} className="space-y-2">
+        <fieldset
+          key={f.name}
+          className="space-y-2"
+          aria-invalid={err ? true : undefined}
+          aria-describedby={err ? fieldErrId(f.name) : undefined}
+        >
           <legend className="text-sm font-medium text-fg">
             {f.label}
             {f.required ? <span className="text-red-500 dark:text-red-400"> *</span> : null}
@@ -237,7 +258,11 @@ export function ApplyPage() {
               </label>
             ))}
           </div>
-          {err ? <p className="text-xs text-red-500 dark:text-red-400">{err}</p> : null}
+          {err ? (
+            <p id={fieldErrId(f.name)} className="text-xs text-red-500 dark:text-red-400">
+              {err}
+            </p>
+          ) : null}
         </fieldset>
       )
     }
@@ -245,7 +270,12 @@ export function ApplyPage() {
     if (f.type === 'checkbox') {
       const arr = Array.isArray(values[f.name]) ? (values[f.name] as string[]) : []
       return (
-        <fieldset key={f.name} className="space-y-2">
+        <fieldset
+          key={f.name}
+          className="space-y-2"
+          aria-invalid={err ? true : undefined}
+          aria-describedby={err ? fieldErrId(f.name) : undefined}
+        >
           <legend className="text-sm font-medium text-fg">{f.label}</legend>
           <div className="mt-2 grid gap-2 sm:grid-cols-2">
             {f.options.map((o) => (
@@ -263,7 +293,11 @@ export function ApplyPage() {
               </label>
             ))}
           </div>
-          {err ? <p className="text-xs text-red-500 dark:text-red-400">{err}</p> : null}
+          {err ? (
+            <p id={fieldErrId(f.name)} className="text-xs text-red-500 dark:text-red-400">
+              {err}
+            </p>
+          ) : null}
         </fieldset>
       )
     }
@@ -271,6 +305,8 @@ export function ApplyPage() {
     if (f.type === 'textarea') {
       const s = String(values[f.name] ?? '')
       const wc = countWords(s)
+      const hintId = `${fieldId(f.name)}-hint`
+      const taDescribedBy = err ? `${hintId} ${fieldErrId(f.name)}` : hintId
       return (
         <div key={f.name}>
           <label htmlFor={fieldId(f.name)} className="block text-sm font-medium text-fg">
@@ -284,15 +320,21 @@ export function ApplyPage() {
             value={s}
             onChange={(e) => setField(f.name, e.target.value)}
             placeholder={f.placeholder}
+            aria-invalid={err ? true : undefined}
+            aria-describedby={taDescribedBy}
             className={clsx(
               'mt-2 w-full resize-y rounded-lg border bg-bg-elevated px-3 py-2 text-sm text-fg placeholder:text-fg-muted focus-visible:outline-none focus-visible:ring-2 dark:bg-surface-950/80',
               common,
             )}
           />
-          <p className={clsx('mt-1 text-xs', wc > f.maxWords ? 'text-red-500 dark:text-red-400' : 'text-muted')}>
+          <p id={hintId} className={clsx('mt-1 text-xs', wc > f.maxWords ? 'text-red-500 dark:text-red-400' : 'text-muted')}>
             {wc} / {f.maxWords} kelime
           </p>
-          {err ? <p className="text-xs text-red-500 dark:text-red-400">{err}</p> : null}
+          {err ? (
+            <p id={fieldErrId(f.name)} className="text-xs text-red-500 dark:text-red-400">
+              {err}
+            </p>
+          ) : null}
         </div>
       )
     }
@@ -334,7 +376,9 @@ export function ApplyPage() {
         <Countdown deadlineIso={applicationDeadlineIso} />
         <Card className="mt-6">
           {status === 'ok' ? (
-            <p className="text-center text-green-600 dark:text-green-400">Başvurunuz alındı (simülasyon). Teşekkürler!</p>
+            <p role="status" aria-live="polite" className="text-center text-green-600 dark:text-green-400">
+              Başvurunuz alındı (simülasyon). Teşekkürler!
+            </p>
           ) : (
             <form onSubmit={onSubmit} className="space-y-8">
               <div>
@@ -357,7 +401,11 @@ export function ApplyPage() {
 
               <div className="space-y-8">{stepFields.map(renderField)}</div>
 
-              {status === 'err' ? <p className="text-sm text-red-500 dark:text-red-400">Gönderim başarısız. Daha sonra tekrar deneyin.</p> : null}
+              {status === 'err' ? (
+                <p role="alert" className="text-sm text-red-500 dark:text-red-400">
+                  Gönderim başarısız. Daha sonra tekrar deneyin.
+                </p>
+              ) : null}
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <Button type="button" variant="secondary" className="w-full sm:w-auto" disabled={step === 0} onClick={goBack}>

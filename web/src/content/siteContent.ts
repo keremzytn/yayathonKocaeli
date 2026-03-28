@@ -1,10 +1,14 @@
 /** Statik site içeriği — KBB / Yayathon web rehberi ve metodoloji raporundan türetilmiştir. */
 
+const siteBaseUrl =
+  (import.meta.env.VITE_SITE_URL as string | undefined)?.trim().replace(/\/$/, '') ||
+  'https://carmedlegal.com'
+
 export const siteMeta = {
   title: 'Yayathon 2026 | Kocaeli Büyükşehir Belediyesi',
   description:
     'Kocaeli Yaya Ulaşımı Eylem Planı kapsamında İzmit ve Darıca için yaya odaklı fikir maratonu. 5–6 Haziran 2026.',
-  url: 'https://www.carmedlegal.com',
+  url: siteBaseUrl,
   locale: 'tr_TR',
 } as const
 
