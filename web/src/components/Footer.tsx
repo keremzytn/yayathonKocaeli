@@ -35,7 +35,7 @@ export function Footer() {
           </div>
         </div>
         <p className="mt-10 border-t border-border pt-8 text-center text-xs text-muted">
-          Kocaeli Büyükşehir Belediyesi · Kaiser Mühendislik iş birliği
+          Kocaeli Büyükşehir Belediyesi · Kaiser Mühendislik
         </p>
       </div>
     </footer>

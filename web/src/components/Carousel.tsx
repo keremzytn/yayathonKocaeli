@@ -52,23 +52,9 @@ export function Carousel({ images, title }: { images: { src: string; alt: string
           ))}
 
           <div
-            className="pointer-events-none absolute inset-0 z-[5] rounded-b-none bg-gradient-to-t from-black/[0.82] via-black/25 to-transparent md:via-black/20"
-            aria-hidden
-          />
-          <div
             className="pointer-events-none absolute inset-0 z-[6] rounded-b-none ring-1 ring-inset ring-black/10 dark:ring-white/[0.06]"
             aria-hidden
           />
-
-          <figcaption className="absolute inset-x-0 bottom-0 z-20 px-4 pb-4 pt-16 text-left sm:px-7 sm:pb-5 sm:pt-20">
-            <p className="max-w-2xl font-display text-base font-semibold leading-snug text-white drop-shadow-sm sm:text-lg">
-              {title}
-            </p>
-            <p className="mt-2 flex items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-white/55">
-              <span className="h-0.5 w-6 rounded-full bg-accent-400 shadow-[0_0_12px_rgba(45,212,191,0.45)]" aria-hidden />
-              {i + 1} / {n}
-            </p>
-          </figcaption>
 
           <button type="button" className={clsx(navBtn, 'left-3 sm:left-4')} onClick={prev} aria-label="Önceki görsel">
             <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
