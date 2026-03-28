@@ -1,12 +1,16 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { announcements, homeAnnouncementsConfig } from '../content/siteContent'
+import { AnnouncementDetailModal } from './AnnouncementDetailModal'
 import { AnnouncementRow } from './AnnouncementRow'
 
 /** ~tek satır yüksekliği (padding + başlık + 2 satır özet); 3 satır görünür alan için çarpan. */
 const ROW_ESTIMATE_REM = 6.75
 
 export function HomeAnnouncements() {
+  const [openSlug, setOpenSlug] = useState<string | null>(null)
   const items = [...announcements].sort((a, b) => b.dateIso.localeCompare(a.dateIso))
+  const selected = openSlug ? (items.find((a) => a.slug === openSlug) ?? null) : null
 
   if (items.length === 0) return null
 
@@ -42,8 +46,8 @@ export function HomeAnnouncements() {
                 announcement={a}
                 clampSummary
                 className="-mx-2 px-2"
-                as="link"
-                to={`/duyurular?duyuru=${encodeURIComponent(a.slug)}`}
+                as="button"
+                onClick={() => setOpenSlug(a.slug)}
               />
             </li>
           ))}
@@ -51,6 +55,7 @@ export function HomeAnnouncements() {
         </div>
         </div>
       </div>
+      <AnnouncementDetailModal announcement={selected} onClose={() => setOpenSlug(null)} />
     </section>
   )
 }
