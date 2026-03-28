@@ -33,7 +33,14 @@ export function Header() {
       <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:gap-4 lg:px-8">
         <Link to="/" className="flex shrink-0 items-center gap-2 no-underline" aria-label="Anasayfa">
           <span className="flex h-12 w-12 overflow-hidden rounded-md bg-bg-elevated ring-1 ring-border/60" aria-hidden>
-            <img src="/images/logo.jpeg" alt="" className="h-full w-full object-cover" />
+            <img
+              src="/images/logo.jpeg"
+              alt=""
+              width={48}
+              height={48}
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
           </span>
         </Link>
 

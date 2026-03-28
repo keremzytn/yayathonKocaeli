@@ -40,11 +40,15 @@ export const hero = {
   ],
 }
 
-/** Ana sayfa hero: tam genişlik arka plan (yerel dosya için `/hero-bg.jpg` vb.) */
-export const heroBackground = {
+/** Ana sayfa hero: WebP üretip sunucuya koyunca `imageSrcWebp` ekleyin (daha iyi PSI) */
+export const heroBackground: {
+  imageSrc: string
+  imageSrcWebp?: string
+  imageAlt: string
+} = {
   imageSrc: '/images/kocaeli.jpg',
   imageAlt: 'Kocaeli kent görünümü',
-} as const
+}
 
 /** Boş bırakılırsa video alanı yer tutucu gösterir; YouTube video kimliğini yazın. */
 export const homeVideo: { title: string; lead: string; youtubeId: string } = {

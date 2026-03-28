@@ -8,6 +8,7 @@ export function HomeHero({
   subtitle,
   stats,
   backgroundImage,
+  backgroundImageWebp,
   backgroundAlt,
 }: {
   kicker: string
@@ -15,17 +16,32 @@ export function HomeHero({
   subtitle: string
   stats: readonly HeroStat[]
   backgroundImage: string
+  backgroundImageWebp?: string
   backgroundAlt: string
 }) {
+  const heroImg = (
+    <img
+      src={backgroundImage}
+      alt={backgroundAlt}
+      width={1920}
+      height={1080}
+      decoding="async"
+      fetchPriority="high"
+      className="absolute inset-0 h-full w-full object-cover"
+    />
+  )
+
   return (
     <section className="border-b border-border">
       <div className="relative flex w-screen min-h-[min(70vh,640px)] items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-          role="img"
-          aria-label={backgroundAlt}
-        />
+        {backgroundImageWebp ? (
+          <picture className="absolute inset-0 block">
+            <source srcSet={backgroundImageWebp} type="image/webp" />
+            {heroImg}
+          </picture>
+        ) : (
+          heroImg
+        )}
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/65" aria-hidden />
         <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.04]" aria-hidden />
 

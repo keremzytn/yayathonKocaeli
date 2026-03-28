@@ -30,17 +30,16 @@ export function HomePage() {
 
   return (
     <>
-      {/* 1. Hero — ilk dikkat ve marka tonu */}
-      <Reveal rootMargin="0px 0px 0px 0px">
-        <HomeHero
-          kicker={hero.kicker}
-          title={hero.title}
-          subtitle={hero.subtitle}
-          stats={hero.stats}
-          backgroundImage={heroBackground.imageSrc}
-          backgroundAlt={heroBackground.imageAlt}
-        />
-      </Reveal>
+      {/* 1. Hero — Reveal yok: üst katman LCP/CLS için hemen görünür olmalı */}
+      <HomeHero
+        kicker={hero.kicker}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        stats={hero.stats}
+        backgroundImage={heroBackground.imageSrc}
+        backgroundImageWebp={heroBackground.imageSrcWebp}
+        backgroundAlt={heroBackground.imageAlt}
+      />
 
       {/* 2. Hakkında — "Bu nedir?" sorusunu yanıtla + video ile duygusal bağ kur */}
       <Reveal as="section" className="border-b border-border py-16 sm:py-20">
@@ -72,6 +71,7 @@ export function HomePage() {
                     title={homeVideo.title}
                     src={`https://www.youtube-nocookie.com/embed/${homeVideo.youtubeId}?rel=0`}
                     className="h-full w-full"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                   />
