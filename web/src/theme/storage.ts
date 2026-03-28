@@ -2,8 +2,16 @@ import type { Theme } from './types'
 
 export const STORAGE_KEY = 'yayathon-theme'
 
+const THEME_COLOR_HEX = { light: '#f8fafc', dark: '#1c1c1e' } as const
+
+function syncThemeColorMeta(theme: Theme) {
+  const meta = document.querySelector('meta[name="theme-color"]')
+  if (meta) meta.setAttribute('content', theme === 'dark' ? THEME_COLOR_HEX.dark : THEME_COLOR_HEX.light)
+}
+
 export function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle('dark', theme === 'dark')
+  syncThemeColorMeta(theme)
   try {
     localStorage.setItem(STORAGE_KEY, theme)
   } catch {

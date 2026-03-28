@@ -21,7 +21,13 @@
   --ui-reveal-stagger: 75ms;
 }
 
+html {
+  color-scheme: light;
+}
+
 html.dark {
+  color-scheme: dark;
+  --ui-focus-ring: #6eb0e8;
   --ui-bg: #1c1c1e;
   --ui-bg-muted: #111827;
   --ui-bg-elevated: #1f2937;
