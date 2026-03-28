@@ -125,6 +125,16 @@ export const participatePage = {
   },
 }
 
+export type ApplicationCalendarRow = { event: string; date: string; highlight?: boolean }
+
+export const applicationCalendar: ApplicationCalendarRow[] = [
+  { event: 'Bireysel Başvuruların Alınması', date: 'Nisan – Mayıs 2026', highlight: true },
+  { event: 'Takımların Oluşturulması ve Duyurulması', date: 'Mayıs 2026', highlight: true },
+  { event: 'Saha Keşif Programı (İzmit Teknik Gezi)', date: '5 Haziran 2026' },
+  { event: 'Hackathon Maratonu (Luxor Garden Park Hotel)', date: '6 Haziran 2026' },
+  { event: 'Ödül Töreni ve Kapanış', date: '6 Haziran 2026 (19:30)' },
+]
+
 export const scheduleFieldDay = {
   title: 'Saha Keşif Programı — 5 Haziran 2026',
   location: 'İzmit kent merkezi',

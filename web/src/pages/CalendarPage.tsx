@@ -1,4 +1,4 @@
-import { scheduleFieldDay, scheduleHackathon, scheduleMeta } from '../content/siteContent'
+import { applicationCalendar, scheduleFieldDay, scheduleHackathon, scheduleMeta } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Section } from '../components/Section'
@@ -38,16 +38,48 @@ export function CalendarPage() {
           </div>
         </div>
       </PageHero>
+      {/* ── Uygulama Takvimi tablosu ── */}
+      <Section title="Uygulama Takvimi">
+        <div className="overflow-x-auto rounded-2xl border border-border">
+          <table className="w-full min-w-[480px] text-left text-sm">
+            <thead className="bg-bg-muted text-xs uppercase tracking-wide text-muted dark:bg-surface-900/80">
+              <tr>
+                <th className="px-4 py-3 font-medium">Etkinlik</th>
+                <th className="whitespace-nowrap px-4 py-3 font-medium text-right">Tarih</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {applicationCalendar.map((row) => (
+                <tr
+                  key={row.event}
+                  className="bg-card hover:bg-bg-muted dark:bg-surface-950/40 dark:hover:bg-surface-900/60"
+                >
+                  <td className="px-4 py-3 font-medium text-fg">{row.event}</td>
+                  <td
+                    className={`whitespace-nowrap px-4 py-3 text-right font-semibold ${row.highlight
+                        ? 'text-accent-600 dark:text-accent-400'
+                        : 'text-fg'
+                      }`}
+                  >
+                    {row.date}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
       <Section title={scheduleFieldDay.title}>
         <Card className="relative overflow-hidden">
           <div className="absolute left-0 top-0 h-full w-1 bg-accent-500/55" aria-hidden />
           <div className="pl-2">
-          <p className="text-sm font-medium text-accent-600 dark:text-accent-400">{scheduleFieldDay.location}</p>
-          {scheduleFieldDay.paragraphs.map((p) => (
-            <p key={p} className="mt-3 leading-relaxed text-fg-muted">
-              {p}
-            </p>
-          ))}
+            <p className="text-sm font-medium text-accent-600 dark:text-accent-400">{scheduleFieldDay.location}</p>
+            {scheduleFieldDay.paragraphs.map((p) => (
+              <p key={p} className="mt-3 leading-relaxed text-fg-muted">
+                {p}
+              </p>
+            ))}
           </div>
         </Card>
       </Section>
