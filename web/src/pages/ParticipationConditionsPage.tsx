@@ -2,7 +2,6 @@ import { participatePage } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { PageHero } from '../components/PageHero'
 import { Section } from '../components/Section'
-import { Model10x10 } from '../components/Model10x10'
 import { Card } from '../components/Card'
 import { GraduationCap, Layers, Users } from 'lucide-react'
 
@@ -51,9 +50,6 @@ export function ParticipationConditionsPage() {
         <Card>
           <p className="max-w-3xl leading-relaxed text-fg-muted">{participatePage.teamModel.p}</p>
         </Card>
-      </Section>
-      <Section title="10 × 10 modeli — etkileşimli görünüm">
-        <Model10x10 />
       </Section>
       <div className="pb-16" />
     </>
