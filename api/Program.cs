@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddScoped<Api.Services.IEmailService, Api.Services.EmailService>();
 
 // Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>

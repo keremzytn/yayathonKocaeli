@@ -33,47 +33,53 @@ export function AdminLoginPage() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Admin Girişi</h2>
+    <div className="flex h-screen items-center justify-center bg-bg-muted/30 dark:bg-bg px-4 py-8">
+      <div className="w-full max-w-sm bg-bg-elevated rounded-3xl border border-border shadow-xl p-8 md:p-10 relative overflow-hidden">
+        {/* Decorative background element matched to the site's accent gradients */}
+        <div className="absolute top-0 right-0 -m-8 h-32 w-32 rounded-full bg-accent-500/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 -m-8 h-32 w-32 rounded-full bg-accent-500/10 blur-3xl" />
         
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md flex items-center gap-2">
-            <AlertTriangle size={18} />
-            {error}
-          </div>
-        )}
+        <div className="relative z-10">
+          <h2 className="text-3xl font-display font-bold text-center mb-8 text-fg tracking-tight">Admin Girişi</h2>
+          
+          {error && (
+            <div className="mb-6 px-4 py-3 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl flex items-center gap-3 text-sm font-medium">
+              <AlertTriangle size={18} className="shrink-0" />
+              {error}
+            </div>
+          )}
 
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Kullanıcı Adı</label>
-            <input
-              type="text"
-              required
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="admin"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="admin123"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-md transition-colors"
-          >
-            Giriş Yap
-          </button>
-        </form>
+          <form onSubmit={handleLogin} className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium text-fg mb-1.5">Kullanıcı Adı</label>
+              <input
+                type="text"
+                required
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                className="w-full px-4 py-3 bg-bg-muted/50 border border-border text-fg rounded-xl focus:ring-2 focus:ring-accent-600 focus:outline-none transition-all placeholder:text-muted"
+                placeholder="admin"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-fg mb-1.5">Şifre</label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-bg-muted/50 border border-border text-fg rounded-xl focus:ring-2 focus:ring-accent-600 focus:outline-none transition-all placeholder:text-muted"
+                placeholder="••••••••"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 px-4 bg-accent-600 hover:bg-accent-500 text-white font-semibold rounded-xl transition-all shadow-sm hover:shadow mt-4"
+            >
+              Giriş Yap
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )

@@ -99,12 +99,12 @@ export function ContactPage() {
               <h2 className="font-display text-lg font-semibold text-fg">Bize yazın</h2>
             </div>
             <p className="mt-1 text-sm text-muted">
-              Mesajınız şu an demo modunda kaydedilmez; altyapı hazır olunca aynı form backend’e bağlanabilir.
+              Aşağıdaki formu doldurarak bizlere soru ve önerilerinizi iletebilirsiniz. En kısa sürede dönüş sağlanacaktır.
             </p>
 
             {status === 'ok' ? (
               <p role="status" aria-live="polite" className="mt-6 text-sm text-green-600 dark:text-green-400">
-                Mesajınız alındı (simülasyon). Teşekkürler!
+                Mesajınız başarıyla iletildi. Teşekkürler!
               </p>
             ) : (
               <form onSubmit={onSubmit} className="mt-6 space-y-5">
@@ -229,7 +229,7 @@ export function ContactPage() {
                   </p>
                 ) : null}
                 <Button type="submit" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'Gönderiliyor…' : 'Mesajı gönder (demo)'}
+                  {status === 'sending' ? 'Gönderiliyor…' : 'Mesajı gönder'}
                 </Button>
               </form>
             )}

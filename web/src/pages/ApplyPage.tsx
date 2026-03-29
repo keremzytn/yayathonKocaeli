@@ -81,7 +81,6 @@ export function ApplyPage() {
   }, [])
 
   const [values, setValues] = useState<Record<string, string | string[]>>(initial)
-  const [fileLabel, setFileLabel] = useState<string | null>(null)
   const [file, setFile] = useState<File | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle')
@@ -353,12 +352,10 @@ export function ApplyPage() {
             onChange={(e) => {
               const fl = e.target.files?.[0]
               setFile(fl ?? null)
-              setFileLabel(fl?.name ?? null)
             }}
             className="mt-2 block w-full text-sm text-fg-muted file:mr-3 file:cursor-pointer file:rounded-xl file:border file:border-accent-600/25 file:bg-accent-600 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white file:shadow-sm file:transition file:hover:border-accent-500/40 file:hover:bg-accent-500 dark:file:border-accent-400/35 dark:file:bg-accent-500 dark:file:hover:bg-accent-400"
           />
-          {fileLabel ? <p className="mt-1 text-xs text-muted">Seçilen: {fileLabel}</p> : null}
-          <p className="mt-1 text-xs text-muted">Backend olmadan dosya yalnızca tarayıcıda kalır; gönderim simülasyonudur.</p>
+          <p className="mt-1 text-xs text-muted">Backend bağlantısı aktif edilmediğinde dosya yalnızca tarayıcıda kalır.</p>
         </div>
       )
     }
@@ -381,7 +378,7 @@ export function ApplyPage() {
         <Card className="mt-6">
           {status === 'ok' ? (
             <p role="status" aria-live="polite" className="text-center text-green-600 dark:text-green-400">
-              Başvurunuz alındı (simülasyon). Teşekkürler!
+              Başvurunuz başarıyla alındı. Teşekkürler!
             </p>
           ) : (
             <form onSubmit={onSubmit} className="space-y-8">
@@ -422,7 +419,7 @@ export function ApplyPage() {
                     </Button>
                   ) : (
                     <Button type="submit" className="w-full sm:w-auto" disabled={status === 'sending'}>
-                      {status === 'sending' ? 'Gönderiliyor…' : 'Başvuruyu gönder (demo)'}
+                      {status === 'sending' ? 'Gönderiliyor…' : 'Başvuruyu gönder'}
                     </Button>
                   )}
                 </div>

@@ -39,31 +39,37 @@ export function AdminDashboardPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">Kontrol Paneli</h1>
+      <h1 className="text-2xl md:text-3xl font-display font-bold mb-8 text-fg tracking-tight">Kontrol Paneli</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link to="/admin/messages" className="bg-blue-50 p-6 rounded-xl border border-blue-100 hover:shadow-md transition cursor-pointer flex items-center justify-between">
+        <Link to="/admin/messages" className="bg-bg-elevated p-6 rounded-2xl border border-border shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
           <div>
-            <h3 className="text-blue-500 font-semibold mb-1">Gelen Mesajlar</h3>
-            <p className="text-4xl font-bold text-gray-800">{stats.messages}</p>
+            <h3 className="text-sm font-medium text-fg-muted mb-1">Gelen Mesajlar</h3>
+            <p className="text-4xl font-display font-bold text-fg group-hover:text-accent-600 transition-colors">{stats.messages}</p>
           </div>
-          <MessageSquare size={48} className="text-blue-200" />
+          <div className="h-12 w-12 rounded-xl bg-accent-500/10 flex items-center justify-center text-accent-600">
+            <MessageSquare size={24} />
+          </div>
         </Link>
         
-        <Link to="/admin/announcements" className="bg-purple-50 p-6 rounded-xl border border-purple-100 hover:shadow-md transition cursor-pointer flex items-center justify-between">
+        <Link to="/admin/announcements" className="bg-bg-elevated p-6 rounded-2xl border border-border shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
           <div>
-            <h3 className="text-purple-500 font-semibold mb-1">Duyuru Yönetimi</h3>
-            <p className="text-4xl font-bold text-gray-800">{stats.announcements}</p>
+            <h3 className="text-sm font-medium text-fg-muted mb-1">Duyuru Yönetimi</h3>
+            <p className="text-4xl font-display font-bold text-fg group-hover:text-accent-600 transition-colors">{stats.announcements}</p>
           </div>
-          <Megaphone size={48} className="text-purple-200" />
+          <div className="h-12 w-12 rounded-xl bg-accent-500/10 flex items-center justify-center text-accent-600">
+            <Megaphone size={24} />
+          </div>
         </Link>
 
-        <div className="bg-green-50 p-6 rounded-xl border border-green-100 flex items-center justify-between">
+        <div className="bg-bg-elevated p-6 rounded-2xl border border-border shadow-sm flex items-center justify-between">
           <div>
-            <h3 className="text-green-500 font-semibold mb-1">Ziyaretçiler</h3>
-            <p className="text-4xl font-bold text-gray-800">{stats.visits}</p>
+            <h3 className="text-sm font-medium text-fg-muted mb-1">Ziyaretçiler</h3>
+            <p className="text-4xl font-display font-bold text-fg">{stats.visits}</p>
           </div>
-          <Users size={48} className="text-green-200" />
+          <div className="h-12 w-12 rounded-xl bg-accent-500/10 flex items-center justify-center text-accent-600">
+            <Users size={24} />
+          </div>
         </div>
       </div>
     </div>

@@ -17,8 +17,19 @@ export type ContactPayload = {
   message: string
 }
 
-/** İletişim formu — backend yokken sahte yanıt */
+/** İletişim formu — gerçeğe bağlıyoruz */
 export async function submitContact(payload: ContactPayload): Promise<{ ok: true; id: string }> {
-  await new Promise((r) => setTimeout(r, 500))
-  return { ok: true, id: `contact-${Date.now()}-${payload.email.length}` }
+  try {
+    const res = await fetch('http://localhost:5144/api/contactmessages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!res.ok) throw new Error("API hatası");
+    
+    return { ok: true, id: `contact-${Date.now()}` }
+  } catch (error) {
+    throw error;
+  }
 }

@@ -22,35 +22,40 @@ export function AdminLayout() {
 
   // Very basic minimal dashboard shell layout
   return (
-    <div className="flex h-screen bg-gray-100 flex-col md:flex-row">
-      <aside className="w-full md:w-64 bg-gray-900 text-white flex flex-col hidden md:flex">
-        <div className="p-4 text-xl font-bold border-b border-gray-800">Admin Panel</div>
-        <nav className="flex-1 p-4 space-y-2">
-          <Link to="/admin" className={`flex items-center gap-2 block px-4 py-2 rounded ${location.pathname === '/admin' ? 'bg-gray-800' : 'hover:bg-gray-800'}`}>
-            <LayoutDashboard size={20} /> Dashboard
+    <div className="flex h-screen bg-bg flex-col md:flex-row">
+      <aside className="w-full md:w-64 bg-bg-elevated border-r border-border flex flex-col hidden md:flex">
+        <div className="p-5 text-xl font-display font-bold border-b border-border text-fg tracking-tight">Admin Panel</div>
+        <nav className="flex-1 p-4 space-y-1">
+          <Link to="/admin" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors font-medium text-sm ${location.pathname === '/admin' ? 'bg-accent-600 text-white shadow-sm' : 'text-fg-muted hover:bg-bg-muted hover:text-fg'}`}>
+            <LayoutDashboard size={18} /> Dashboard
           </Link>
-          <Link to="/admin/messages" className={`flex items-center gap-2 block px-4 py-2 rounded ${location.pathname === '/admin/messages' ? 'bg-gray-800' : 'hover:bg-gray-800'}`}>
-            <MessageSquare size={20} /> Mesajlar
+          <Link to="/admin/messages" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors font-medium text-sm ${location.pathname === '/admin/messages' ? 'bg-accent-600 text-white shadow-sm' : 'text-fg-muted hover:bg-bg-muted hover:text-fg'}`}>
+            <MessageSquare size={18} /> Mesajlar
           </Link>
-          <Link to="/admin/announcements" className={`flex items-center gap-2 block px-4 py-2 rounded ${location.pathname === '/admin/announcements' ? 'bg-gray-800' : 'hover:bg-gray-800'}`}>
-            <Megaphone size={20} /> Duyurular
+          <Link to="/admin/announcements" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors font-medium text-sm ${location.pathname === '/admin/announcements' ? 'bg-accent-600 text-white shadow-sm' : 'text-fg-muted hover:bg-bg-muted hover:text-fg'}`}>
+            <Megaphone size={18} /> Duyurular
           </Link>
         </nav>
-        <div className="p-4 border-t border-gray-800">
-          <button onClick={handleLogout} className="flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-gray-800 rounded">
-            <LogOut size={20} /> Çıkış Yap
+        <div className="p-4 border-t border-border">
+          <button onClick={handleLogout} className="flex items-center gap-3 w-full text-left px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-xl transition-colors font-medium text-sm">
+            <LogOut size={18} /> Çıkış Yap
           </button>
         </div>
       </aside>
       
       {/* Mobile nav */}
-      <div className="md:hidden bg-gray-900 text-white flex justify-between items-center p-4">
-        <div className="font-bold">Admin Panel</div>
-        <button onClick={handleLogout}><LogOut size={20} /></button>
+      <div className="md:hidden bg-bg-elevated border-b border-border flex justify-between items-center p-4">
+        <div className="font-display font-bold text-fg tracking-tight">Admin Panel</div>
+        <div className="flex gap-4 items-center">
+          <Link to="/admin" className="text-fg-muted hover:text-fg transition-colors"><LayoutDashboard size={20} /></Link>
+          <Link to="/admin/messages" className="text-fg-muted hover:text-fg transition-colors"><MessageSquare size={20} /></Link>
+          <Link to="/admin/announcements" className="text-fg-muted hover:text-fg transition-colors"><Megaphone size={20} /></Link>
+          <button onClick={handleLogout} className="text-red-500"><LogOut size={20} /></button>
+        </div>
       </div>
 
-      <main className="flex-1 overflow-auto p-4 md:p-8">
-        <div className="max-w-6xl mx-auto bg-white rounded-lg shadow min-h-full p-6">
+      <main className="flex-1 overflow-auto p-4 md:p-8 bg-bg-muted/30 dark:bg-bg">
+        <div className="max-w-6xl mx-auto min-h-full">
           <Outlet />
         </div>
       </main>
