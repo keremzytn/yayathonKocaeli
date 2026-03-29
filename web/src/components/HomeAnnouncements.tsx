@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { announcements, homeAnnouncementsConfig } from '../content/siteContent'
+import { homeAnnouncementsConfig, mapBackendAnnouncement } from '../content/siteContent'
+import type { Announcement, BackendAnnouncement } from '../content/siteContent'
 import { AnnouncementDetailModal } from './AnnouncementDetailModal'
 import { AnnouncementRow } from './AnnouncementRow'
 
@@ -9,7 +10,21 @@ const ROW_ESTIMATE_REM = 6.75
 
 export function HomeAnnouncements() {
   const [openSlug, setOpenSlug] = useState<string | null>(null)
-  const items = [...announcements].sort((a, b) => b.dateIso.localeCompare(a.dateIso))
+  const [items, setItems] = useState<Announcement[]>([])
+
+  useEffect(() => {
+    fetch('http://localhost:5144/api/announcements')
+      .then(res => res.json())
+      .then((data: BackendAnnouncement[]) => {
+        const mapped = data
+          .filter(a => a.isActive)
+          .map(mapBackendAnnouncement)
+          .sort((a, b) => b.dateIso.localeCompare(a.dateIso))
+        setItems(mapped)
+      })
+      .catch(err => console.error("Error fetching announcements:", err))
+  }, [])
+
   const selected = openSlug ? (items.find((a) => a.slug === openSlug) ?? null) : null
 
   if (items.length === 0) return null

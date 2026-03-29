@@ -9,10 +9,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Api.Migrations
+namespace Api.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260329180817_InitialCreate")]
+    [Migration("20260329181255_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -107,7 +107,7 @@ namespace Api.Migrations
                         new
                         {
                             Id = 1,
-                            PasswordHash = "$2a$11$lFe7TSH2v1wf/SeDHPlP/e/CpjeV5GCY1Su1a5DmGSDtQ.tcEeNiO",
+                            PasswordHash = "$2a$11$Jh/9Hqh1uD97NRS/ADU6BeIpiE1B/kPeaV/jRYFTiMX/6COUI0kT6",
                             Username = "admin"
                         });
                 });

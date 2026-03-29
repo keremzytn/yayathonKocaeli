@@ -17,7 +17,7 @@ export function AdminMessagesPage() {
   const fetchMessages = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5000/api/contactmessages', {
+      const res = await fetch('http://localhost:5144/api/contactmessages', {
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       })
       if (res.ok) {
@@ -36,7 +36,7 @@ export function AdminMessagesPage() {
 
   const markAsRead = async (id: number) => {
     try {
-      await fetch(`http://localhost:5000/api/contactmessages/${id}/read`, {
+      await fetch(`http://localhost:5144/api/contactmessages/${id}/read`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       })
@@ -49,7 +49,7 @@ export function AdminMessagesPage() {
   const deleteMessage = async (id: number) => {
     if (!confirm('Bu mesajı silmek istediğinize emin misiniz?')) return
     try {
-      await fetch(`http://localhost:5000/api/contactmessages/${id}`, {
+      await fetch(`http://localhost:5144/api/contactmessages/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       })

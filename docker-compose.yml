@@ -9,21 +9,3 @@ services:
     ports:
       - "${WEB_PORT:-8083}:80"
     restart: unless-stopped
-    depends_on:
-      - db
-
-  db:
-    image: postgres:15-alpine
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: yayathon_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
-

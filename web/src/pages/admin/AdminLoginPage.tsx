@@ -12,7 +12,7 @@ export function AdminLoginPage() {
     e.preventDefault()
     setError('')
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch('http://localhost:5144/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

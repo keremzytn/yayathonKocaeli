@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { AnnouncementDetailModal } from '../components/AnnouncementDetailModal'
 import { PageHero } from '../components/PageHero'
 import { AnnouncementRow } from '../components/AnnouncementRow'
-import { announcements } from '../content/siteContent'
+import type { Announcement, BackendAnnouncement } from '../content/siteContent'
+import { mapBackendAnnouncement } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { Reveal } from '../components/Reveal'
 
@@ -10,9 +12,24 @@ export function AnnouncementsPage() {
   usePageTitle('Duyurular')
   const [params, setParams] = useSearchParams()
   const selectedSlug = params.get('duyuru')
-  const selected = selectedSlug ? announcements.find((x) => x.slug === selectedSlug) : null
+  const [announcements, setAnnouncements] = useState<Announcement[]>([])
 
-  const sorted = [...announcements].sort((a, b) => b.dateIso.localeCompare(a.dateIso))
+  useEffect(() => {
+    fetch('http://localhost:5144/api/announcements')
+      .then(res => res.json())
+      .then((data: BackendAnnouncement[]) => {
+        // Apply active filter and map
+        const mapped = data
+          .filter(a => a.isActive)
+          .map(mapBackendAnnouncement)
+          .sort((a, b) => b.dateIso.localeCompare(a.dateIso))
+        setAnnouncements(mapped)
+      })
+      .catch(err => console.error("Error fetching announcements:", err))
+  }, [])
+
+  const selected = selectedSlug ? announcements.find((x) => x.slug === selectedSlug) : null
+  const sorted = announcements
 
   function openAnnouncement(slug: string) {
     setParams((p) => {

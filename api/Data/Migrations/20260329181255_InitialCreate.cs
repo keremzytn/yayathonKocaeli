@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Api.Migrations
+namespace Api.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -62,7 +62,7 @@ namespace Api.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "PasswordHash", "Username" },
-                values: new object[] { 1, "$2a$11$lFe7TSH2v1wf/SeDHPlP/e/CpjeV5GCY1Su1a5DmGSDtQ.tcEeNiO", "admin" });
+                values: new object[] { 1, "$2a$11$Jh/9Hqh1uD97NRS/ADU6BeIpiE1B/kPeaV/jRYFTiMX/6COUI0kT6", "admin" });
         }
 
         /// <inheritdoc />

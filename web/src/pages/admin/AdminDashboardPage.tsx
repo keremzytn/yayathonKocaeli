@@ -13,8 +13,8 @@ export function AdminDashboardPage() {
         const hdrs = { Authorization: `Bearer ${token}` }
 
         const [msgRes, annRes] = await Promise.all([
-          fetch('http://localhost:5000/api/contactmessages', { headers: hdrs }),
-          fetch('http://localhost:5000/api/announcements'),
+          fetch('http://localhost:5144/api/contactmessages', { headers: hdrs }),
+          fetch('http://localhost:5144/api/announcements'),
         ])
         
         let messages = 0

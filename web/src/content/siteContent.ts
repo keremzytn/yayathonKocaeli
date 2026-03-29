@@ -337,101 +337,25 @@ export const homeAnnouncementsConfig = {
   visibleRows: 3,
 } as const
 
-export const announcements: Announcement[] = [
-  {
-    slug: 'basvurular-acildi',
-    title: 'Başvurular Açıldı',
-    dateIso: '2026-03-27',
-    summary: 'Yayathon 2026 bireysel başvuruları açıldı. Takımlar organizasyon komitesi tarafından oluşturulacaktır.',
-    body: [
-      'Başvurular bireysel olarak alınır. Hazır takım başvuruları kabul edilmez.',
-      'Katılımcı profilleri; disiplin çeşitliliği ve denge kriterleri gözetilerek 10×10 modeliyle hibrit takımlara dağıtılır.',
-      'Başvuru adımlarını tamamladıktan sonra gönderim ekranında “Başvuruyu gönder” ile işlemi bitirebilirsiniz.',
-    ],
-  },
-  {
-    slug: 'saha-kesfi-programi-duyurusu',
-    title: 'Saha Keşfi Programı Duyurusu',
-    dateIso: '2026-04-10',
-    summary: '5 Haziran saha keşfi programının ana akışı ve buluşma noktaları duyuruldu.',
-    body: [
-      'Saha keşfi, İzmit kent merkezi odaklı tramvay turu ve rehberli yürüyüşleri kapsar.',
-      'Katılımcıların rahat yürüyüş ayakkabısı ve hava koşullarına uygun ekipmanla gelmeleri önerilir.',
-      'Detaylı program “Takvim” sayfasında güncellenecektir.',
-    ],
-  },
-  {
-    slug: 'sss-guncellemesi',
-    title: 'SSS Güncellemesi',
-    dateIso: '2026-04-18',
-    summary: 'Lojistik ve etkinlik kuralları hakkında yeni sorular eklendi, yanıtlar güncellendi.',
-    body: [
-      'Kendi bilgisayarınızı getirmeniz beklenir; sınırlı sayıda yazılım/donanım desteği sağlanabilir.',
-      'Etkinlik günü iaşe organizasyon tarafından karşılanacaktır.',
-      'Yeni sorular için “SSS” sayfasını ziyaret edebilirsiniz.',
-    ],
-  },
-  {
-    slug: 'mentor-takvimi',
-    title: 'Mentor Görüşme Takvimi',
-    dateIso: '2026-04-22',
-    summary: 'Hackathon günü mentorluk slotları ve branş bazlı masa düzeni duyuruldu.',
-    body: [
-      'Mimarlık, ulaşım planlama ve yazılım mentorları için ayrı istişare alanları belirlendi.',
-      'Slotlar, kayıt sonrası katılımcı panelinden görüntülenebilecek.',
-    ],
-  },
-  {
-    slug: 'kayit-hatirlatma',
-    title: 'Son Başvuru Tarihi Hatırlatması',
-    dateIso: '2026-05-01',
-    summary: 'Bireysel başvurular 25 Mayıs 2026 saat 23:59’a kadar alınmaya devam edecek.',
-    body: [
-      'Başvuru formunda zorunlu alanların tamamlandığından emin olun.',
-      'Onay e-postası gönderiminde gecikme yaşanmaması için iletişim bilgilerinizi kontrol edin.',
-    ],
-  },
-  {
-    slug: 'veri-paketi-guncelleme',
-    title: 'Teknik Veri Paketi Güncellemesi',
-    dateIso: '2026-05-08',
-    summary: 'İzmit ve Darıca için güncel pafta özetleri ve yaya güvenliği istatistikleri pakete eklendi.',
-    body: [
-      'İndirilebilir kaynaklar sayfasından yeni sürüme erişebilirsiniz (yayınlandığında).',
-      'Önceki çalışmalarınızı yeni katmanlarla uyumlu hale getirmeniz önerilir.',
-    ],
-  },
-  {
-    slug: 'ulasim-ve-otopark',
-    title: 'Ulaşım ve Otopark Bilgisi',
-    dateIso: '2026-05-12',
-    summary: 'Luxor Garden Park Hotel çevresi toplu taşıma hatları ve misafir otopark yönlendirmesi paylaşıldı.',
-    body: [
-      'İzmit merkezden tramvay ve otobüs bağlantıları için özet harita eklendi.',
-      'Etkinlik günü vale ve alternatif park alanları organizasyon tarafından iletilecek.',
-    ],
-  },
-  {
-    slug: 'sunum-formati',
-    title: 'Jüri Sunum Formatı',
-    dateIso: '2026-05-15',
-    summary: '5 dakikalık sunumda beklenen başlıklar ve yedek materyal (poster / kısa video) kuralları netleştirildi.',
-    body: [
-      'Sunum şablonu indirilebilir kaynaklar bölümünde yer alacaktır.',
-      'Teknik aksaklıklar için USB yedek ve PDF çıktı getirmeniz tavsiye edilir.',
-    ],
-  },
-  {
-    slug: 'saha-kesfi-uyarisi',
-    title: 'Saha Keşfi Hava ve Ekipman',
-    dateIso: '2026-05-20',
-    summary: '5 Haziran saha programı için hava durumuna uygun kıyafet ve rahat ayakkabı zorunluluğu hatırlatması.',
-    body: [
-      'Uzun süre ayakta ve yürüyüş içeren programda su ve şapka bulundurmanız önerilir.',
-      'Özel sağlık durumunuzu kayıt sırasında bildirmeniz önemlidir.',
-    ],
-  },
-]
+// Static announcements removed. They are now fetched from the backend.
+
+export type BackendAnnouncement = {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  isActive: boolean;
+};
+
+export function mapBackendAnnouncement(apiData: BackendAnnouncement): Announcement {
+  return {
+    slug: apiData.id.toString(),
+    title: apiData.title,
+    dateIso: apiData.createdAt,
+    summary: apiData.content.split('\n')[0] || apiData.content.substring(0, 100),
+    body: apiData.content.split('\n').filter(Boolean)
+  };
+}
 
 export const contactPage = {
   title: 'İletişim ve Destek',

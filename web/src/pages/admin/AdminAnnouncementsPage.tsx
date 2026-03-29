@@ -19,7 +19,7 @@ export function AdminAnnouncementsPage() {
   const fetchAnnouncements = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5000/api/announcements')
+      const res = await fetch('http://localhost:5144/api/announcements')
       if (res.ok) {
         setAnnouncements(await res.json())
       }
@@ -39,8 +39,8 @@ export function AdminAnnouncementsPage() {
     
     const method = currentAnn.id ? 'PUT' : 'POST'
     const url = currentAnn.id 
-      ? `http://localhost:5000/api/announcements/${currentAnn.id}`
-      : `http://localhost:5000/api/announcements`
+      ? `http://localhost:5144/api/announcements/${currentAnn.id}`
+      : `http://localhost:5144/api/announcements`
       
     try {
       const res = await fetch(url, {
@@ -68,7 +68,7 @@ export function AdminAnnouncementsPage() {
   const handleDelete = async (id: number) => {
     if (!confirm('Duyuruyu silmek istediğinize emin misiniz?')) return
     try {
-      await fetch(`http://localhost:5000/api/announcements/${id}`, {
+      await fetch(`http://localhost:5144/api/announcements/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
       })
