@@ -7,11 +7,11 @@ import { GraduationCap, Layers, Users } from 'lucide-react'
 import { Reveal } from '../components/Reveal'
 
 export function ParticipationConditionsPage() {
-  usePageTitle('Katılım koşulları')
+  usePageTitle('Katılım Koşulları')
 
   return (
     <>
-      <PageHero title="Katılım koşulları" subtitle={participatePage.lead}>
+      <PageHero title="Katılım Koşulları" subtitle={participatePage.lead}>
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">

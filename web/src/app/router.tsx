@@ -21,6 +21,12 @@ const ContactPage = lazy(() => import('../pages/ContactPage').then((m) => ({ def
 const AnnouncementsPage = lazy(() => import('../pages/AnnouncementsPage').then((m) => ({ default: m.AnnouncementsPage })))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })))
 
+const AdminLayout = lazy(() => import('../pages/admin/AdminLayout').then((m) => ({ default: m.AdminLayout })))
+const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage').then((m) => ({ default: m.AdminLoginPage })))
+const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage').then((m) => ({ default: m.AdminDashboardPage })))
+const AdminMessagesPage = lazy(() => import('../pages/admin/AdminMessagesPage').then((m) => ({ default: m.AdminMessagesPage })))
+const AdminAnnouncementsPage = lazy(() => import('../pages/admin/AdminAnnouncementsPage').then((m) => ({ default: m.AdminAnnouncementsPage })))
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -39,7 +45,6 @@ export const router = createBrowserRouter([
           { path: 'basvuru', element: <ApplyPage /> },
           { path: 'sss', element: <FAQPage /> },
           { path: 'iletisim', element: <ContactPage /> },
-          { path: 'duyurular', element: <AnnouncementsPage /> },
           { path: 'hakkinda', element: <Navigate to="/yarismaci-kunyesi" replace /> },
           { path: 'katilim', element: <Navigate to="/katilim-kosullari" replace /> },
           { path: 'program', element: <Navigate to="/takvim" replace /> },
@@ -49,7 +54,19 @@ export const router = createBrowserRouter([
           { path: 'kaynaklar', element: <Navigate to="/oduller-ve-kurallar" replace /> },
         ],
       },
+      { path: 'duyurular', element: <AnnouncementsPage /> },
       { path: '*', element: <NotFoundPage /> },
+    ],
+  },
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    errorElement: <RouteError />,
+    children: [
+      { index: true, element: <AdminDashboardPage /> },
+      { path: 'login', element: <AdminLoginPage /> },
+      { path: 'messages', element: <AdminMessagesPage /> },
+      { path: 'announcements', element: <AdminAnnouncementsPage /> },
     ],
   },
 ])

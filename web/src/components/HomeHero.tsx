@@ -64,7 +64,7 @@ export function HomeHero({
                   to="/yarismaci-kunyesi"
                   className="inline-flex items-center justify-center rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-accent-900/10 transition hover:bg-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                 >
-                  Yarışma künyesi
+                  Yarışma Künyesi
                 </Link>
                 <Link
                   to="/basvuru"

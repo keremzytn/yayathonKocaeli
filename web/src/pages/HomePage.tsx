@@ -125,7 +125,7 @@ export function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Countdown deadlineIso={applicationDeadlineIso} />
           <div className="mt-6 flex justify-center">
-            <LinkButton to="/basvuru">Başvuruya git</LinkButton>
+            <LinkButton to="/basvuru">Başvuruya Git</LinkButton>
           </div>
         </div>
       </Reveal>
@@ -145,9 +145,9 @@ export function HomePage() {
               to="/sss"
               className="inline-flex items-center justify-center rounded-lg border border-border bg-bg-elevated px-4 py-2.5 text-sm text-fg no-underline transition hover:bg-bg-muted dark:bg-surface-800 dark:hover:bg-surface-700"
             >
-              SSS
+              Sık Sorulan Sorular
             </Link>
-            <LinkButton to="/iletisim">İletişime geç</LinkButton>
+            <LinkButton to="/iletisim">İletişime Geç</LinkButton>
           </div>
         </div>
       </Reveal>

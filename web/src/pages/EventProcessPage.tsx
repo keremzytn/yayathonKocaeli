@@ -8,11 +8,11 @@ import { Compass, Lightbulb, Route } from 'lucide-react'
 import { Reveal } from '../components/Reveal'
 
 export function EventProcessPage() {
-  usePageTitle('Etkinlik süreci')
+  usePageTitle('Etkinlik Süreci')
 
   return (
     <>
-      <PageHero title="Etkinlik süreci" subtitle="Hackathon metodolojisi ve tasarım çerçevesi — özet.">
+      <PageHero title="Etkinlik Süreci" subtitle="Hackathon metodolojisi ve tasarım çerçevesi — özet.">
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
@@ -66,7 +66,7 @@ export function EventProcessPage() {
           <Card>
             <p className="text-sm leading-relaxed text-fg-muted">{designPage.intro}</p>
             <p className="mt-4 text-sm text-muted">
-              Tasarım ilkeleri ve beklentilerin özeti «Ödüller ve kurallar» sayfasındadır.
+              Tasarım ilkeleri ve beklentilerin özeti «Ödüller ve Kurallar» sayfasındadır.
             </p>
           </Card>
         </Section>

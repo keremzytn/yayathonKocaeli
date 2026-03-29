@@ -9,7 +9,7 @@ export function FAQPage() {
 
   return (
     <>
-      <PageHero title="Sıkça sorulan sorular" subtitle="Lojistik ve etkinlik kuralları hakkında özet yanıtlar." />
+      <PageHero title="Sık Sorulan Sorular" subtitle="Lojistik ve etkinlik kuralları hakkında özet yanıtlar." />
       <Reveal className="w-full px-0 py-12 sm:py-16">
         <FAQList items={faqItems} />
       </Reveal>

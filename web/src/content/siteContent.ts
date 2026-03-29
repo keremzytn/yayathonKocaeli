@@ -19,12 +19,12 @@ export type NavItem = { to: string; label: string }
 
 export const navItems: NavItem[] = [
   { to: '/', label: 'Ana Sayfa' },
-  { to: '/yarismaci-kunyesi', label: 'Yarışma künyesi' },
-  { to: '/etkinlik-suresi', label: 'Etkinlik süreci' },
-  { to: '/katilim-kosullari', label: 'Katılım koşulları' },
-  { to: '/oduller-ve-kurallar', label: 'Ödüller ve kurallar' },
+  { to: '/yarismaci-kunyesi', label: 'Yarışma Künyesi' },
+  { to: '/etkinlik-suresi', label: 'Etkinlik Süreci' },
+  { to: '/katilim-kosullari', label: 'Katılım Koşulları' },
+  { to: '/oduller-ve-kurallar', label: 'Ödüller ve Kurallar' },
   { to: '/takvim', label: 'Takvim' },
-  { to: '/sss', label: 'SSS' },
+  { to: '/sss', label: 'Sık Sorulan Sorular' },
   { to: '/basvuru', label: 'Başvuru' },
   { to: '/iletisim', label: 'İletişim' },
 ]
@@ -119,7 +119,7 @@ export const participatePage = {
   lead:
     'Etkinlik, disiplinler arası etkileşimi güçlendiren 10×10 modeli üzerine kuruludur: 100 seçkin katılımcı, organizasyon komitesince oluşturulan 10 hibrit takıma dağıtılır.',
   eligibility: {
-    title: 'Uygunluk kriterleri',
+    title: 'Uygunluk Kriterleri',
     items: [
       'Akademik: Üniversitelerin lisans ve lisansüstü öğrencileri ile akademisyenler.',
       'Profesyonel: Şehir planlama, mimarlık, mühendislik, sosyoloji ve yazılım alanlarında uzmanlar.',
@@ -127,7 +127,7 @@ export const participatePage = {
     ],
   },
   teamModel: {
-    title: 'Karma takım ve başvuru',
+    title: 'Karma Takım ve Başvuru',
     p:
       'Katılım bireysel başvuru esasındadır. Hazır ekip başvuruları, yarışma dengesi ve farklı disiplinlerin zorunlu etkileşimi nedeniyle kabul edilmemektedir. Takımlar; uzmanlık, deneyim ve cinsiyet dengesi gözetilerek profesyonelce oluşturulur.',
   },
@@ -144,7 +144,7 @@ export const applicationCalendar: ApplicationCalendarRow[] = [
 ]
 
 export const scheduleFieldDay = {
-  title: 'Saha Keşif Programı — 5 Haziran 2026',
+  title: 'Saha Keşif Programı — 5 Haziran 2026 (İzmit Teknik Gezi)',
   location: 'İzmit kent merkezi',
   paragraphs: [
     'Tramvay turu, rehberli yürüyüşler ve kullanıcı davranışı analizlerini kapsayan teknik gezi ile tasarım kararlarını gerçek mekânsal verilere dayandırmayı hedefliyoruz.',
@@ -166,15 +166,15 @@ export const scheduleHackathon: ProgramRow[] = [
 
 export const scheduleMeta = {
   hackathonDate: '6 Haziran 2026',
-  venue: 'Luxor Garden Park Hotel (Safir ve Kafkas salonları)',
+  venue: 'Luxor Garden Park Hotel (Safir ve Kafkas Salonları)',
 }
 
 export const evaluationPage = {
-  title: 'Değerlendirme ve ödüller',
+  title: 'Değerlendirme ve Ödüller',
   intro:
     'Değerlendirme; akademik derinlik, kamu yönetimi deneyimi ve mesleki uzmanlığı birleştiren 7 kişilik hibrit jüri tarafından yapılır.',
   jury: {
-    title: 'Jüri kompozisyonu',
+    title: 'Jüri Kompozisyonu',
     items: [
       'Akademi temsilcileri (KOÜ ve GTÜ’den birer akademisyen — 2 kişi)',
       'Kocaeli Büyükşehir Belediyesi temsilcileri (2 kişi)',
@@ -182,7 +182,7 @@ export const evaluationPage = {
     ],
   },
   weights: {
-    title: 'Puanlama ağırlıkları',
+    title: 'Puanlama Ağırlıkları',
     items: [
       { label: 'Yenilikçilik ve özgünlük', percent: 30 },
       { label: 'Uygulanabilirlik ve fizibilite', percent: 30 },
@@ -191,7 +191,7 @@ export const evaluationPage = {
     ],
   },
   prizes: {
-    title: 'Başarı ödülleri',
+    title: 'Başarı Ödülleri',
     subtitle:
       'Ödüller, jüri değerlendirmesiyle belirlenen derecelere göre kazanan ekiplerin tüm üyelerine kişi başı hediye çeki olarak tanımlanır.',
     rows: [
@@ -203,17 +203,17 @@ export const evaluationPage = {
 }
 
 export const homePrizesSection = {
-  title: 'Başarı ödülleri',
+  title: 'Başarı Ödülleri',
   lead:
     'Üç derece için kişi başı hediye çekleri. Jüri yapısı, puanlama ve diğer kurallar için ödüller sayfasına göz atın.',
 }
 
 export const designPage = {
-  title: 'Tasarım ilkeleri ve çözüm çerçevesi',
+  title: 'Tasarım İlkeleri ve Çözüm Çerçevesi',
   intro:
     'Katılımcılardan Tasarım Odaklı Düşünce (Design Thinking) ve Taktiksel Şehircilik (Tactical Urbanism) yaklaşımlarını sentezlemeleri beklenir.',
   focus: {
-    title: 'Stratejik odak noktaları',
+    title: 'Stratejik Odak Noktaları',
     items: [
       {
         h: 'Bağlam duyarlılığı',
@@ -234,7 +234,7 @@ export const designPage = {
     ],
   },
   gallery: {
-    title: 'İlham galerisi',
+    title: 'İlham Galerisi',
     caption: 'Taktik şehircilik ve yaya öncelikli müdahale örneklerinden kareler (özet görseller).',
     images: [
       {
@@ -258,7 +258,7 @@ export const designPage = {
 }
 
 export const methodologyPage = {
-  title: 'Hackathon metodolojisi',
+  title: 'Hackathon Metodolojisi',
   sections: [
     {
       h: 'Giriş',
@@ -266,7 +266,7 @@ export const methodologyPage = {
         'Kocaeli Yaya Ulaşımı Eylem Planı; yaya hareketliliğini güvenli, erişilebilir, kapsayıcı ve sürdürülebilir kılmayı amaçlar. 6 Haziran 2026’da düzenlenecek 12 saatlik yoğun Hackathon ile gençlerin ve öğrencilerin yaratıcı potansiyeli sürece dahil edilir.',
     },
     {
-      h: 'Beklenen çıktılar',
+      h: 'Beklenen Çıktılar',
       items: [
         'İki alt merkez için yaya odaklı sorun alanlarının analizi',
         'Kısa, orta ve uzun vadeli müdahale önerileri',
@@ -281,7 +281,7 @@ export const methodologyPage = {
         'Katılımcı kayıtlarının etkinlikten en az üç ay önce açılması ve hazırlıkların takvimden en az iki ay önce tamamlanması hedeflenir. Veri setleri (haritalar, trafik, nüfus, ilke özetleri, yasal kısıtlar) sadeleştirilerek takımlara sunulur.',
     },
     {
-      h: 'Tasarım yaklaşımları',
+      h: 'Tasarım Yaklaşımları',
       items: [
         'Design Thinking ile kullanıcı ve paydaş odaklı problem çerçevesi',
         'Tactical Urbanism ile hızlı pilot ve düşük riskli müdahaleler',
@@ -289,7 +289,7 @@ export const methodologyPage = {
       ],
     },
     {
-      h: 'Mekânsal organizasyon',
+      h: 'Mekânsal Organizasyon',
       p:
         'Etkinlik alanında çalışma masaları, mentor bölgeleri, malzeme ve sunum alanı; projeksiyon ve ses sistemleri jüri sunumları için ayrılır.',
     },
@@ -297,29 +297,29 @@ export const methodologyPage = {
 }
 
 export const resourcesPage = {
-  title: 'İndirilebilir kaynaklar',
+  title: 'İndirilebilir Kaynaklar',
   intro:
     'Aşağıdaki dosyalar yayınlandığında bu sayfadan indirilebilir. Şu an statik ön yüz aşamasında bağlantılar yer tutucudur.',
   assets: [
-    { title: 'Yarışma şartnamesi', description: 'PDF', filename: 'yarisma-sartnamesi.pdf', available: false },
-    { title: 'Teknik veri rehberi ve analiz paftaları', description: 'ZIP', filename: 'teknik-veri.zip', available: false },
-    { title: 'Tasarım sorusu ve senaryo taslağı', description: 'PDF', filename: 'tasarim-sorusu.pdf', available: false },
-    { title: 'Sunum şablonu', description: 'PPTX', filename: 'sunum-sablonu.pptx', available: false },
+    { title: 'Yarışma Şartnamesi', description: 'PDF', filename: 'yarisma-sartnamesi.pdf', available: false },
+    { title: 'Teknik Veri Rehberi ve Analiz Paftaları', description: 'ZIP', filename: 'teknik-veri.zip', available: false },
+    { title: 'Tasarım Sorusu ve Senaryo Taslağı', description: 'PDF', filename: 'tasarim-sorusu.pdf', available: false },
+    { title: 'Sunum Şablonu', description: 'PPTX', filename: 'sunum-sablonu.pptx', available: false },
   ],
 }
 
 export const faqItems = [
-  { q: 'Etkinlik katılımı ücretli midir?', a: 'Hayır, katılım tamamen ücretsizdir.' },
+  { q: 'Etkinlik Katılımı Ücretli Midir?', a: 'Hayır, katılım tamamen ücretsizdir.' },
   {
-    q: 'Kendi bilgisayarımı getirmeli miyim?',
+    q: 'Kendi Bilgisayarımı Getirmeli Miyim?',
     a: 'Evet, katılımcıların kendi donanımlarıyla gelmeleri beklenir. Masaüstü yazılım desteği (QGIS, SketchUp, Canva vb.) kısıtlı alanlarda sunulacaktır.',
   },
   {
-    q: 'Yemek ve ulaşım organizasyonu nasıl olacak?',
+    q: 'Yemek ve Ulaşım Organizasyonu Nasıl Olacak?',
     a: '5 Haziran saha gezisi ve 6 Haziran etkinlik günü iaşe (öğle/akşam yemeği ve ara ikramlar) organizasyon tarafından karşılanacaktır.',
   },
   {
-    q: 'Hangi yazılımları kullanabiliriz?',
+    q: 'Hangi Yazılımları Kullanabiliriz?',
     a: 'QGIS, ArcGIS, SketchUp, AutoCAD, Figma, Canva ve Adobe serisi araçların kullanımı teşvik edilmektedir.',
   },
 ]
@@ -340,7 +340,7 @@ export const homeAnnouncementsConfig = {
 export const announcements: Announcement[] = [
   {
     slug: 'basvurular-acildi',
-    title: 'Başvurular açıldı',
+    title: 'Başvurular Açıldı',
     dateIso: '2026-03-27',
     summary: 'Yayathon 2026 bireysel başvuruları açıldı. Takımlar organizasyon komitesi tarafından oluşturulacaktır.',
     body: [
@@ -351,7 +351,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'saha-kesfi-programi-duyurusu',
-    title: 'Saha keşfi programı duyurusu',
+    title: 'Saha Keşfi Programı Duyurusu',
     dateIso: '2026-04-10',
     summary: '5 Haziran saha keşfi programının ana akışı ve buluşma noktaları duyuruldu.',
     body: [
@@ -362,7 +362,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'sss-guncellemesi',
-    title: 'SSS güncellemesi',
+    title: 'SSS Güncellemesi',
     dateIso: '2026-04-18',
     summary: 'Lojistik ve etkinlik kuralları hakkında yeni sorular eklendi, yanıtlar güncellendi.',
     body: [
@@ -373,7 +373,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'mentor-takvimi',
-    title: 'Mentor görüşme takvimi',
+    title: 'Mentor Görüşme Takvimi',
     dateIso: '2026-04-22',
     summary: 'Hackathon günü mentorluk slotları ve branş bazlı masa düzeni duyuruldu.',
     body: [
@@ -383,7 +383,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'kayit-hatirlatma',
-    title: 'Son başvuru tarihi hatırlatması',
+    title: 'Son Başvuru Tarihi Hatırlatması',
     dateIso: '2026-05-01',
     summary: 'Bireysel başvurular 25 Mayıs 2026 saat 23:59’a kadar alınmaya devam edecek.',
     body: [
@@ -393,7 +393,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'veri-paketi-guncelleme',
-    title: 'Teknik veri paketi güncellemesi',
+    title: 'Teknik Veri Paketi Güncellemesi',
     dateIso: '2026-05-08',
     summary: 'İzmit ve Darıca için güncel pafta özetleri ve yaya güvenliği istatistikleri pakete eklendi.',
     body: [
@@ -403,7 +403,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'ulasim-ve-otopark',
-    title: 'Ulaşım ve otopark bilgisi',
+    title: 'Ulaşım ve Otopark Bilgisi',
     dateIso: '2026-05-12',
     summary: 'Luxor Garden Park Hotel çevresi toplu taşıma hatları ve misafir otopark yönlendirmesi paylaşıldı.',
     body: [
@@ -413,7 +413,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'sunum-formati',
-    title: 'Jüri sunum formatı',
+    title: 'Jüri Sunum Formatı',
     dateIso: '2026-05-15',
     summary: '5 dakikalık sunumda beklenen başlıklar ve yedek materyal (poster / kısa video) kuralları netleştirildi.',
     body: [
@@ -423,7 +423,7 @@ export const announcements: Announcement[] = [
   },
   {
     slug: 'saha-kesfi-uyarisi',
-    title: 'Saha keşfi hava ve ekipman',
+    title: 'Saha Keşfi Hava ve Ekipman',
     dateIso: '2026-05-20',
     summary: '5 Haziran saha programı için hava durumuna uygun kıyafet ve rahat ayakkabı zorunluluğu hatırlatması.',
     body: [
@@ -434,7 +434,7 @@ export const announcements: Announcement[] = [
 ]
 
 export const contactPage = {
-  title: 'İletişim ve destek',
+  title: 'İletişim ve Destek',
   email: 'hackathon@kocaeli.bel.tr',
   channels: [
     { name: 'E-posta', detail: 'hackathon@kocaeli.bel.tr', href: 'mailto:hackathon@kocaeli.bel.tr' },
@@ -445,7 +445,7 @@ export const contactPage = {
 
 /** Etkinlik yeri — harita embed + Google Haritalar yönlendirmesi */
 export const contactVenue = {
-  mapTitle: 'Hackathon maratonu konumu (Luxor Garden Hotel)',
+  mapTitle: 'Hackathon Maratonu Konumu (Luxor Garden Hotel)',
   addressLine: 'Yahyakaptan, Kara Yolu Cd. No: 6, 41050 İzmit/Kocaeli',
   /** Google Maps Embed API `q` parametresi (.env: VITE_GOOGLE_MAPS_EMBED_KEY) */
   googleMapsPlaceQuery: 'Luxor Garden Hotel, Kara Yolu Cd. No: 6, 41050 İzmit, Kocaeli, Türkiye',

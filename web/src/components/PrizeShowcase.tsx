@@ -57,7 +57,7 @@ export function PrizeShowcase({ mode }: { mode: 'page' | 'home' }) {
         {grid}
         <div className="flex justify-center">
           <LinkButton to="/oduller-ve-kurallar" className="gap-1.5">
-            Ödüller ve kurallar
+            Ödüller ve Kurallar
             <ChevronRight className="h-4 w-4" aria-hidden />
           </LinkButton>
         </div>

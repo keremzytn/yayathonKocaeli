@@ -33,9 +33,12 @@ __pycache__/
 # Düzenleyici ve işletim sistemi
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
 .idea/
 .DS_Store
 Thumbs.db
+*.userprefs
 
 # Windows
 *.suo
@@ -47,3 +50,26 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# .NET / C#
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docstates
+*.dbmdl
+*.suo
+*.userprefs
+TestResults/
+*.rsuser
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Others
+.vs/
+*.sqlite
+*.db

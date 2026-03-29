@@ -11,11 +11,11 @@ import { BadgeCheck, Gavel, Trophy } from 'lucide-react'
 import { Reveal } from '../components/Reveal'
 
 export function AwardsRulesPage() {
-  usePageTitle('Ödüller ve kurallar')
+  usePageTitle('Ödüller ve Kurallar')
 
   return (
     <>
-      <PageHero title="Ödüller ve kurallar" subtitle={evaluationPage.intro}>
+      <PageHero title="Ödüller ve Kurallar" subtitle={evaluationPage.intro}>
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-border bg-bg-elevated p-3 dark:bg-surface-900/60">
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted">
