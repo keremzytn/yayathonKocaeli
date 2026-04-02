@@ -19,3 +19,5 @@ services:
     ports:
       - "${WEB_PORT:-8083}:80"
     restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
