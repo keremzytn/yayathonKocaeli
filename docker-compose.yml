@@ -6,12 +6,11 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    ports:
-      - "${API_PORT:-8085}:8080"
+    network_mode: "host"
     restart: unless-stopped
     environment:
-      # Docker içinden host (ana makine) veritabanına bağlanabilmesi için host.docker.internal kullanıldı
-      - ConnectionStrings__DefaultConnection=Host=host.docker.internal;Port=5432;Database=yayathon_db;Username=postgres;Password=postgres;
+      - ASPNETCORE_URLS=http://+:8085
+      - ConnectionStrings__DefaultConnection=Host=127.0.0.1;Port=5432;Database=yayathon_db;Username=postgres;Password=postgres;
 
   web:
     build:
