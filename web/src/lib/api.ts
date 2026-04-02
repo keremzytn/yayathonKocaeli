@@ -1,3 +1,5 @@
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8085';
+
 /**
  * Başvuru gönderimi — statik fazda sahte yanıt.
  * Backend hazır olduğunda: POST /api/applications (multipart veya JSON + ayrı upload).
@@ -20,7 +22,7 @@ export type ContactPayload = {
 /** İletişim formu — gerçeğe bağlıyoruz */
 export async function submitContact(payload: ContactPayload): Promise<{ ok: true; id: string }> {
   try {
-    const res = await fetch('http://localhost:5144/api/contactmessages', {
+    const res = await fetch(`${API_BASE_URL}/api/contactmessages`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

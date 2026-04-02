@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Trash2, FileCheck2, Loader2 } from 'lucide-react'
+import { API_BASE_URL } from '../../lib/api'
 
 type ContactMessage = {
   id: number
@@ -17,7 +18,7 @@ export function AdminMessagesPage() {
   const fetchMessages = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5144/api/contactmessages', {
+      const res = await fetch(`${API_BASE_URL}/api/contactmessages`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       })
       if (res.ok) {
@@ -36,7 +37,7 @@ export function AdminMessagesPage() {
 
   const markAsRead = async (id: number) => {
     try {
-      await fetch(`http://localhost:5144/api/contactmessages/${id}/read`, {
+      await fetch(`${API_BASE_URL}/api/contactmessages/${id}/read`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       })
@@ -49,7 +50,7 @@ export function AdminMessagesPage() {
   const deleteMessage = async (id: number) => {
     if (!confirm('Bu mesajı silmek istediğinize emin misiniz?')) return
     try {
-      await fetch(`http://localhost:5144/api/contactmessages/${id}`, {
+      await fetch(`${API_BASE_URL}/api/contactmessages/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       })

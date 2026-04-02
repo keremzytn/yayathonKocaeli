@@ -4,6 +4,7 @@ import { homeAnnouncementsConfig, mapBackendAnnouncement } from '../content/site
 import type { Announcement, BackendAnnouncement } from '../content/siteContent'
 import { AnnouncementDetailModal } from './AnnouncementDetailModal'
 import { AnnouncementRow } from './AnnouncementRow'
+import { API_BASE_URL } from '../lib/api'
 
 /** ~tek satır yüksekliği (padding + başlık + 2 satır özet); 3 satır görünür alan için çarpan. */
 const ROW_ESTIMATE_REM = 6.75
@@ -13,7 +14,7 @@ export function HomeAnnouncements() {
   const [items, setItems] = useState<Announcement[]>([])
 
   useEffect(() => {
-    fetch('http://localhost:5144/api/announcements')
+    fetch(`${API_BASE_URL}/api/announcements`)
       .then(res => res.json())
       .then((data: BackendAnnouncement[]) => {
         const mapped = data

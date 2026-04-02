@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AlertTriangle } from 'lucide-react'
+import { API_BASE_URL } from '../../lib/api'
 
 export function AdminLoginPage() {
   const [username, setUsername] = useState('')
@@ -12,7 +13,7 @@ export function AdminLoginPage() {
     e.preventDefault()
     setError('')
     try {
-      const res = await fetch('http://localhost:5144/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

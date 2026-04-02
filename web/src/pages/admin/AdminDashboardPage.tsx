@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MessageSquare, Megaphone, Users } from 'lucide-react'
+import { API_BASE_URL } from '../../lib/api'
 
 export function AdminDashboardPage() {
   const [stats, setStats] = useState({ messages: 0, announcements: 0, visits: 104 })
@@ -13,8 +14,8 @@ export function AdminDashboardPage() {
         const hdrs = { Authorization: `Bearer ${token}` }
 
         const [msgRes, annRes] = await Promise.all([
-          fetch('http://localhost:5144/api/contactmessages', { headers: hdrs }),
-          fetch('http://localhost:5144/api/announcements'),
+          fetch(`${API_BASE_URL}/api/contactmessages`, { headers: hdrs }),
+          fetch(`${API_BASE_URL}/api/announcements`),
         ])
         
         let messages = 0

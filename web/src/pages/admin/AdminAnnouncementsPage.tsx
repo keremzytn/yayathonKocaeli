@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Plus, Edit2, Trash2, Loader2, Save, X } from 'lucide-react'
+import { API_BASE_URL } from '../../lib/api'
 
 type Announcement = {
   id: number
@@ -19,7 +20,7 @@ export function AdminAnnouncementsPage() {
   const fetchAnnouncements = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5144/api/announcements')
+      const res = await fetch(`${API_BASE_URL}/api/announcements`)
       if (res.ok) {
         setAnnouncements(await res.json())
       }
@@ -39,8 +40,8 @@ export function AdminAnnouncementsPage() {
     
     const method = currentAnn.id ? 'PUT' : 'POST'
     const url = currentAnn.id 
-      ? `http://localhost:5144/api/announcements/${currentAnn.id}`
-      : `http://localhost:5144/api/announcements`
+      ? `${API_BASE_URL}/api/announcements/${currentAnn.id}`
+      : `${API_BASE_URL}/api/announcements`
       
     try {
       const res = await fetch(url, {
@@ -68,7 +69,7 @@ export function AdminAnnouncementsPage() {
   const handleDelete = async (id: number) => {
     if (!confirm('Duyuruyu silmek istediğinize emin misiniz?')) return
     try {
-      await fetch(`http://localhost:5144/api/announcements/${id}`, {
+      await fetch(`${API_BASE_URL}/api/announcements/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
       })

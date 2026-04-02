@@ -7,6 +7,7 @@ import type { Announcement, BackendAnnouncement } from '../content/siteContent'
 import { mapBackendAnnouncement } from '../content/siteContent'
 import { usePageTitle } from '../hooks/usePageTitle'
 import { Reveal } from '../components/Reveal'
+import { API_BASE_URL } from '../lib/api'
 
 export function AnnouncementsPage() {
   usePageTitle('Duyurular')
@@ -15,7 +16,7 @@ export function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
 
   useEffect(() => {
-    fetch('http://localhost:5144/api/announcements')
+    fetch(`${API_BASE_URL}/api/announcements`)
       .then(res => res.json())
       .then((data: BackendAnnouncement[]) => {
         // Apply active filter and map
