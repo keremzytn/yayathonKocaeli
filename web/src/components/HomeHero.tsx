@@ -1,6 +1,38 @@
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 type HeroStat = { label: string; value: string }
+
+function Typewriter({ text }: { text: string }) {
+  const [displayText, setDisplayText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>
+
+    if (!isDeleting && displayText === text) {
+      timeout = setTimeout(() => setIsDeleting(true), 2500)
+    } else if (isDeleting && displayText === '') {
+      timeout = setTimeout(() => setIsDeleting(false), 800)
+    } else {
+      const ms = isDeleting ? 75 : 150
+      timeout = setTimeout(() => {
+        setDisplayText((prev) => 
+          isDeleting ? prev.slice(0, -1) : text.slice(0, prev.length + 1)
+        )
+      }, ms)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [displayText, isDeleting, text])
+
+  return (
+    <span className="inline-flex items-center min-w-[2.5em]">
+      {displayText}
+      <span className="animate-[pulse_1s_ease-in-out_infinite] font-light text-white/70 ml-1">|</span>
+    </span>
+  )
+}
 
 export function HomeHero({
   kicker,
@@ -53,7 +85,15 @@ export function HomeHero({
               </span>
 
               <h1 className="mt-6 font-display text-4xl font-bold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl">
-                {title}
+                {title.includes('2026') ? (
+                  <>
+                    {title.split('2026')[0]}
+                    <Typewriter text="2026" />
+                    {title.split('2026')[1]}
+                  </>
+                ) : (
+                  title
+                )}
               </h1>
               <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-white/95 sm:text-lg lg:mx-0">
                 {subtitle}

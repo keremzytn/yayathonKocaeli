@@ -41,6 +41,16 @@ export function HomePage() {
         backgroundAlt={heroBackground.imageAlt}
       />
 
+      {/* Geri sayım + başvuru CTA (Slider'dan hemen sonra) */}
+      <Reveal as="section" className="border-b border-border bg-bg-muted/30 py-12 dark:bg-surface-900/35 sm:py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <Countdown deadlineIso={applicationDeadlineIso} />
+          <div className="mt-6 flex justify-center">
+            <LinkButton to="/basvuru">Başvuruya Git</LinkButton>
+          </div>
+        </div>
+      </Reveal>
+
       {/* 2. Hakkında — "Bu nedir?" sorusunu yanıtla + video ile duygusal bağ kur */}
       <Reveal as="section" className="border-b border-border py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -119,16 +129,6 @@ export function HomePage() {
       </Reveal>
 
       {/* 5. Video intro bölümüne taşındı */}
-
-      {/* 6. Geri sayım + başvuru CTA — aciliyet ve harekete geçiş */}
-      <Reveal as="section" className="border-b border-border bg-bg-muted/30 py-12 dark:bg-surface-900/35 sm:py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Countdown deadlineIso={applicationDeadlineIso} />
-          <div className="mt-6 flex justify-center">
-            <LinkButton to="/basvuru">Başvuruya Git</LinkButton>
-          </div>
-        </div>
-      </Reveal>
 
       {/* 7. Duyurular — merak uyandırılmış kullanıcı güncel bilgiyi okur */}
       <Reveal>
