@@ -7,7 +7,7 @@ services:
       context: ./api
       dockerfile: Dockerfile
     ports:
-      - "${API_PORT:-8080}:8080"
+      - "${API_PORT:-8085}:8080"
     restart: unless-stopped
     environment:
       # Docker içinden host (ana makine) veritabanına bağlanabilmesi için host.docker.internal kullanıldı
